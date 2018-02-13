@@ -1,0 +1,42 @@
+body {
+  font-family: Raleway, sans-serif;
+   margin:0;
+   padding:0;
+}
+
+.root {
+  background-color: #F5F5F5;
+  overflow-x: hidden;
+}
+
+.center { text-align: center; }
+.left { text-align: left; }
+.stretch-to-bottom { min-height: calc(80vh - 40px); }
+
+.p-top20 { padding-top: 20px; }
+.p-bottom20 { padding-bottom: 20px; }
+.p-top40 { padding-top: 40px; }
+.p-bottom40 { padding-bottom: 40px; }
+.p-top60 { padding-top: 60px; }
+.p-bottom60 { padding-bottom: 60px; }
+
+/* Wrapper to set the standard width of the website */
+.wrapper {
+  width: 60%;
+  margin: 0 auto;
+}
+
+/* Wrapper to set the standard width of narrow componnets on the website */
+.narrow-wrapper {
+  width: 40%;
+  margin: 0 auto;
+}
+
+/* THIS NEEDS MOVED TO 'ROW' REACT COMPONENT */
+.row * {
+  display: inline-block;
+}
+
+.row *:first-child {
+  margin-right: 10px;
+}
