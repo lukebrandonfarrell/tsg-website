@@ -29,7 +29,7 @@ var styles = {
     margin: '0px',
     marginRight: '5px',
     color: '#30A4DC',
-    fontSize: '44px',
+    fontSize: '34px',
     display:'inline-block'
   }
 };

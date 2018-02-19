@@ -2,6 +2,8 @@ import React from 'react';
 import Header from '../components/Header';
 import MainNavigation from '../components/MainNavigation';
 import Footer from '../components/Footer';
+import AdminBar from '../components/AdminBar';
+
 import logo from '../logo.jpg';
 
 const PageTemplate = ({ children }) => {

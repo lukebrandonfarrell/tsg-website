@@ -14,7 +14,7 @@ class HomePage extends Component {
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper stretch-to-bottom">
+          <div className="wrapper stretch-to-bottom p-top30">
             <Title label='Contact' />
             <div className="section group">
               <p>Feel free to contact us if you have any queries</p>

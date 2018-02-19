@@ -1,17 +1,19 @@
 import React from 'react';
 import { Field } from 'redux-form';
 
-const TextBox = ({ label, id, placeholder, type }) => {
+const TextBox = ({ label, id, input, placeholder, type }) => {
   return (
     <div style={ styles.containerStyle }>
-      <label>{ label }</label>
+      <label style={ styles.labelStyle }>{ label }</label>
       <Field
         name={ id }
         component="input"
         type={ type || 'text'}
         placeholder={ placeholder }
         style={ styles.fieldStyle }
-      />
+      >
+        { input }
+      </Field>
     </div>
   );
 };
@@ -20,10 +22,13 @@ var styles = {
   containerStyle: {
     marginTop: '15px',
   },
+  labelStyle: {
+  },
   fieldStyle: {
     display: 'block',
     width: '100%',
     height: '36px',
+    marginTop: '5px',
     padding: '6px 12px',
     fontSize: '14px',
     lineHeight: '1.6',

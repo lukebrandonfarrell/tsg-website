@@ -77,7 +77,7 @@ class HomePage extends Component {
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper">
+          <div className="wrapper p-top30">
             <Title label='Clients' />
             <div  className="section group">
               { this.renderTalent(this.state.page) }

@@ -1,11 +1,26 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import Float from './Float';
 import NavigationButton from './NavigationButton';
+import DropdownButton from './DropdownButton';
 
 import '../App.css';
 
 class MainNavigation extends React.Component {
+  renderRightNavigation(){
+    if(this.props.loggedIn){
+      return (
+        <DropdownButton link="/details" label="Profile" />
+      );
+    }
+
+    return (
+      <NavigationButton link="/login" label="Login" />
+    );
+  }
+
   render() {
     const { navStyle } = styles;
 
@@ -17,7 +32,7 @@ class MainNavigation extends React.Component {
           <NavigationButton link="/contact" label="Contact" />
 
           <Float dir='right'>
-            <NavigationButton link="/login" label="Login" />
+            { this.renderRightNavigation() }
           </Float>
         </div>
       </div>
@@ -36,4 +51,10 @@ var styles = {
   },
 };
 
-export default MainNavigation;
+const mapStateToProps = (state) => {
+  const { loggedIn } = state.jwt;
+
+  return { loggedIn };
+};
+
+export default connect(mapStateToProps, null)(MainNavigation);

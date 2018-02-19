@@ -1,7 +1,8 @@
 import React from 'react';
-import { Field } from 'redux-form';
+import Radium from 'radium';
 
-const Button = ({ children, type, disabled }) => {
+
+const CustomButton = ({ children, type, disabled }) => {
   return (
     <button
       type={type}
@@ -23,7 +24,14 @@ var styles = {
     border: '1px #F58F4D solid',
     marginTop: '15px',
     cursor: 'pointer',
+
+    ':hover': {
+      color: 'white',
+      backgroundColor: '#F58F4D',
+    }
   },
 };
+
+const Button = Radium(CustomButton);
 
 export { Button };
