@@ -1,23 +1,46 @@
 import React from 'react';
 import TalentBox from './TalentBox';
+import { apiInstance } from '../config/env.js';
 import defaultPhoto from '../default-photo.png';
 
 class TalentReel extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      users: null,
+    };
+  }
+
+  componentDidMount() {
+    apiInstance.get('/users/featured')
+      .then((response) => {
+        this.setState({ users : response.data.users });
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   renderReel(){
-    //map
-    const talent = [2, 2,2,2,2,2,2,2,2,2,2];
+    const { users } = this.state;
 
-    return talent.map((element, i) => {
-      return (
-        <div key={i} style={styles.reelPhotoStyle}>
-          <TalentBox
-            id="1"
-            imageUrl={ defaultPhoto }
-            hideName />
-        </div>
-      );
-    });
+    if(users){
+      return users.map((element, i) => {
+        const photo = element.photo_primary[0];
+
+        if(photo){
+          return (
+            <div key={i} style={styles.reelPhotoStyle}>
+              <TalentBox
+                id={ element.id }
+                imageUrl={ photo.source }
+                hideName />
+            </div>
+          );
+        }
+      });
+    }
   }
 
   render(){
@@ -36,7 +59,7 @@ const styles = {
     whiteSpace: 'nowrap',
   },
   reelPhotoStyle: {
-    width: '15%',
+    width: '12%',
     display: 'inline-block',
   }
 };

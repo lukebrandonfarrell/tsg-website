@@ -2,15 +2,18 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Radium from 'radium';
 
-const NavigationButton = ({ link, label }) => {
-  const { buttonStyle, activeStyle, pStyle } = styles;
+class NavigationButton extends React.Component {
+  render(){
+    const { buttonStyle, activeStyle, pStyle } = styles;
+    const { link, label, onClick } = this.props;
 
-  return (
-    <NavLink to={ link } activeStyle={ activeStyle } style={ buttonStyle }>
-      <p style={ pStyle }>{ label }</p>
-    </NavLink>
-  );
-};
+    return (
+      <NavLink exact to={ link } activeStyle={ activeStyle } style={ buttonStyle }>
+        <p style={ pStyle } onClick={onClick}>{ label }</p>
+      </NavLink>
+    );
+  }
+}
 
 var styles = {
   buttonStyle: {

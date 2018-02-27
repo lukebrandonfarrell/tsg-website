@@ -1,4 +1,5 @@
 import React from 'react';
+import Float from './Float';
 
 class Title extends React.Component {
   render() {
@@ -8,6 +9,9 @@ class Title extends React.Component {
       <div style={ containerStyle }>
         <h1 style={plusStyle}>+</h1>
         <h2 style={ textStyle }>{ this.props.label }</h2>
+        <Float dir="right">
+          { this.props.children }
+        </Float>
         <hr />
       </div>
     );

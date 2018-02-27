@@ -9,9 +9,12 @@ import MediaComponent from '../components/MediaComponent';
 import PhysicalData from '../components/PhysicalData';
 import SkillsData from '../components/SkillsData';
 
+import { apiInstance } from '../config/env.js';
+
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faEnvelope, faHeart } from '@fortawesome/fontawesome-free-regular';
 import defaultPhoto from '../default-photo.png';
+import { Button } from '../components/forms/components';
 import '../App.css';
 
 class ProfilePage extends Component {
@@ -43,7 +46,7 @@ class ProfilePage extends Component {
   getProfile(){
     const userId = this.props.match.params.id;
 
-    axios.get(`http://localhost:8000/talent/${userId}`)
+    apiInstance.get(`/users/${userId}`)
       .then((response) => {
         console.log(response);
         const {
@@ -73,24 +76,6 @@ class ProfilePage extends Component {
       .catch(function (error) {
         console.log(error);
       });
-
-    axios.get(`http://localhost:8000/user/${userId}/media/photos`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
-
-
-    axios.get(`http://localhost:8000/user/${userId}/media/photos`)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
   }
 
   render() {
@@ -111,13 +96,14 @@ class ProfilePage extends Component {
       {key : 'Age', value : age},
       {key : 'Gender', value : gender},
       {key : 'Location', value : location},
-      {key : 'Website', value : website}
+      {key : 'Website', value : website},
+      {key : 'Agent', value : agent}
     ];
 
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper p-top30">
+          <div className="wrapper vertical30">
             <div className="section group">
               <div className="col span_1_of_4">
                 <TalentBox
@@ -126,33 +112,20 @@ class ProfilePage extends Component {
                   hideName />
               </div>
 
-              <div className="col span_2_of_4">
+              <div className="col span_3_of_4">
                 <div className="section group">
-                  <Title label={ fullName } />
+                  <Title label={ fullName }>
+                    <Button type="button">Send Message</Button>
+                  </Title>
                   <DetailList data={detailsData} />
                 </div>
-              </div>
-
-              <div className="col span_1_of_4">
-                <Float dir="right">
-                  <FontAwesomeIcon
-                    icon={faHeart}
-                    size="3x"
-                    color="#676767"
-                    border />
-                  <FontAwesomeIcon
-                    icon={faEnvelope}
-                    size="3x"
-                    color="#676767"
-                    border />
-                </Float>
               </div>
             </div>
 
             <hr />
 
             <div className="section group">
-              <MediaComponent />
+              <MediaComponent userId={ this.state.id } />
             </div>
 
             <div className="section group">

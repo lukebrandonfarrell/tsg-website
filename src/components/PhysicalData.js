@@ -1,6 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import DetailList from './DetailList';
+import Subtitle from './Subtitle';
+import { apiInstance } from '../config/env.js';
 
 class PhysicalData extends React.Component {
   constructor(props) {
@@ -12,11 +13,11 @@ class PhysicalData extends React.Component {
   componentDidMount() {
     const { userId } = this.props;
 
-    axios.get(`http://localhost:8000/user/${userId}/physical`)
+    apiInstance.get(`/users/${userId}/physical`)
       .then((response) => {
         const { physical } = response.data;
 
-        this.setState({ physical: physical });
+        this.setState({ physical });
       })
       .catch(function (error) {
         console.log(error);
@@ -24,20 +25,24 @@ class PhysicalData extends React.Component {
   }
 
   renderPhysical(){
-    if(this.state.physical){
-      const physicalData = this.state.physical.map((element) => {
-        return { key: element.field_name, value: element.data };
-      });
+    const { physical } = this.state;
 
-      return (
-        <div>
-          <h2>Physical</h2>
-          <DetailList
-            data={ physicalData }
-            itemWidth="33%"
-          />
-        </div>
-      );
+    if(physical != null){
+      if(physical.length){
+        const physicalData = this.state.physical.map((element) => {
+          return { key: element.field_name, value: element.data };
+        });
+
+        return (
+          <div>
+            <Subtitle>Physical</Subtitle>
+            <DetailList
+              data={ physicalData }
+              itemWidth="33%"
+            />
+          </div>
+        );
+      }
     }
 
     return;

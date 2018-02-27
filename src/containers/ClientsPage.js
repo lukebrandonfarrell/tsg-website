@@ -3,13 +3,12 @@ import axios from 'axios';
 import querystring from 'query-string';
 
 import PageTemplate from './PageTemplate';
-import TalentBox from '../components/TalentBox';
+import TalentList from '../components/TalentList';
 import Title from '../components/Title';
 import Paginator from '../components/Paginator';
 
 import '../App.css';
 import '../Grid.css';
-import defaultPhoto from '../default-photo.png';
 
 class HomePage extends Component {
   constructor(props) {
@@ -35,9 +34,8 @@ class HomePage extends Component {
   fetchTalent(){
     const page = this.getPage(this.props.location.search);
 
-    axios.get(`http://localhost:8000/talent?page=${page}`)
+    axios.get(`http://localhost:8081/users?page=${page}`)
       .then((response) => {
-        console.log(response);
         const talent = response.data.talent;
         const talentCount = response.data.count;
 
@@ -57,30 +55,14 @@ class HomePage extends Component {
     return 1;
   }
 
-  renderTalent(page){
-    return this.state.talent.map((element) => {
-      let photo = defaultPhoto;
-      if(element.photo_primary[0]) { photo = element.photo_primary[0].source; }
-      return (
-        <div key={element.id} className="col span_1_of_4">
-          <TalentBox
-            id={element.id}
-            firstName={element.first_name}
-            lastName={element.last_name}
-            imageUrl={photo} />
-        </div>
-      );
-    });
-  }
-
   render() {
     return (
       <div className="root">
         <PageTemplate>
           <div className="wrapper p-top30">
             <Title label='Clients' />
-            <div  className="section group">
-              { this.renderTalent(this.state.page) }
+            <div className="section group">
+              <TalentList talent={ this.state.talent } />
             </div>
             <Paginator url='/clients' page={this.state.page} count={this.state.talentCount} />
           </div>

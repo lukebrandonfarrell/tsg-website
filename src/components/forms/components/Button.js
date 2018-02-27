@@ -22,7 +22,6 @@ var styles = {
     fontWeight: 'bold',
     backgroundColor: 'white',
     border: '1px #F58F4D solid',
-    marginTop: '15px',
     cursor: 'pointer',
 
     ':hover': {

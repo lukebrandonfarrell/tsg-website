@@ -1,17 +1,8 @@
 import { combineReducers } from 'redux';
 import { reducer as reduxFormReducer } from 'redux-form';
-import JWTTokenReducer from './JWTTokenReducer';
+import AuthReducer from './AuthReducer';
 
 export default combineReducers({
-  jwt: JWTTokenReducer,
-  talent: [],
+  auth: AuthReducer,
   form: reduxFormReducer,
 });
-
-// ({
-//   user: [],
-//   talent: [],
-//
-//   lightboxes: [],
-//   selectedLightbox: null,
-// });

@@ -1,19 +1,14 @@
-import { JWT_TOKEN_RECIEVED } from './types';
-import { config } from '../config/env.js';
-
-import axios from 'axios';
-
-var instance = axios.create({
-  baseURL: config.API,
-});
+import { JWT_TOKEN_RECIEVED, JWT_TOKEN_REVOKED, SET_USER } from './types';
+import { apiInstance } from '../config/env.js';
 
 export const login = ({ email, password }) => {
   return (dispatch) => {
-    instance.post('login', { email, password })
+    apiInstance.post('/login', { email, password })
       .then((response) => {
         const { token } = response.data;
 
         if(token){
+          //Save token
           dispatch({
             type: JWT_TOKEN_RECIEVED,
             payload: token,
@@ -21,7 +16,9 @@ export const login = ({ email, password }) => {
 
           localStorage.setItem('token', token);
 
-          instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+          apiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+          fetchUser(dispatch, token);
         }else{
           console.log(response);
         }
@@ -31,9 +28,41 @@ export const login = ({ email, password }) => {
   };
 };
 
+export const setUser = (data) => {
+  return {
+    type: SET_USER,
+    payload: data,
+  };
+};
+
+function fetchUser(dispatch, token){
+  apiInstance.get('/users/me', {token: token}).then((response) => {
+    dispatch({
+      type: SET_USER,
+      payload: response.data,
+    });
+  });
+}
+
+export const logout = () => {
+  return (dispatch) => {
+    //Reset header
+    apiInstance.defaults.headers.common['Authorization'] = null;
+
+    //Remove from local storage
+    localStorage.removeItem('token');
+
+    //TODO : Revoke token via api
+
+    dispatch({
+      type: JWT_TOKEN_REVOKED,
+    });
+  };
+};
+
 export const setToken = (token) => {
   return (dispatch) => {
-    instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    apiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
     dispatch({
       type: JWT_TOKEN_RECIEVED,

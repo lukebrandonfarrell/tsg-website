@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
+import { logout } from '../actions';
 
 import Float from './Float';
 import NavigationButton from './NavigationButton';
@@ -9,10 +9,26 @@ import DropdownButton from './DropdownButton';
 import '../App.css';
 
 class MainNavigation extends React.Component {
+  logout(){ this.props.logout(); }
+
   renderRightNavigation(){
-    if(this.props.loggedIn){
+    if(this.props.token){
+      const menuItems = [
+        { link: '/details', label: 'Details' },
+        { link: '/physical', label: 'Physical' },
+        { link: '/media', label: 'Media' },
+        { link: '/skills', label: 'Skills' },
+        { link: '/credits', label: 'Credits' },
+      ];
+
       return (
-        <DropdownButton link="/details" label="Profile" />
+        <div>
+          <DropdownButton
+            label="Profile"
+            menu={ menuItems } />
+          <NavigationButton link="#logout" label="Logout"
+            onClick={this.logout.bind(this)} />
+        </div>
       );
     }
 
@@ -27,7 +43,7 @@ class MainNavigation extends React.Component {
     return (
       <div style={ navStyle }>
         <div className='wrapper'>
-          <NavigationButton link="/home" label="Home" />
+          <NavigationButton link="/" label="Home" />
           <NavigationButton link="/clients" label="Clients" />
           <NavigationButton link="/contact" label="Contact" />
 
@@ -52,9 +68,9 @@ var styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { loggedIn } = state.jwt;
+  const { token } = state.auth;
 
-  return { loggedIn };
+  return { token };
 };
 
-export default connect(mapStateToProps, null)(MainNavigation);
+export default connect(mapStateToProps, { logout })(MainNavigation);

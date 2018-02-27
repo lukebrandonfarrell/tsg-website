@@ -5,26 +5,49 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/fontawesome-free-solid';
 
 class DropdownButton extends React.Component {
-  renderMenu(){
-    const { activeStyle, dropdownMenu, dropdownMenuButton } = styles;
+  constructor(props) {
+    super(props);
 
-    return (
-      <ul style={ dropdownMenu }>
-        <li>
-          <NavLink to='/details' style={ dropdownMenuButton } activeStyle={ activeStyle }>
-          Label
-          </NavLink>
-        </li>
-      </ul>
-    );
+    this.state = { dropdown: false };
+  }
+
+  renderMenu(){
+    const { menu, reverseDropdownMenu } = this.props;
+
+    if(this.state.dropdown && menu){
+      const { activeStyle, dropdownMenu, dropdownMenuButton, dropdownMenuButtonText } = styles;
+
+      const menuDirection = reverseDropdownMenu ? { right: '0px' } : { left: '0px' };
+
+      return (
+        <ul style={{
+          ...dropdownMenu,
+          ...menuDirection
+        }}>
+          {
+            menu.map((element) => {
+              return (
+                <NavLink key={element.link} to={element.link} style={ dropdownMenuButton } activeStyle={ activeStyle }>
+                  <li style={ dropdownMenuButtonText }>
+                    { element.label }
+                  </li>
+                </NavLink>
+              );
+            })
+          }
+        </ul>
+      );
+    }
   }
 
   render() {
     const { buttonStyle, pStyle, iconStyle } = styles;
 
     return (
-      <div to={ this.props.link } style={ buttonStyle }>
-        <p style={ pStyle }>
+      <div
+        style={{ ...buttonStyle, ...this.props.buttonContainerStyle }}
+        onClick={() => this.setState({ dropdown : !this.state.dropdown })}>
+        <p style={{ ...pStyle, ...this.props.buttonTextStyle }}>
           { this.props.label }
           <FontAwesomeIcon
             icon={ faChevronDown }
@@ -45,6 +68,7 @@ var styles = {
     color: '#474747',
     textAlign: 'center',
     textDecoration: 'none',
+    cursor: 'pointer',
     position: 'relative',
   },
   iconStyle : {
@@ -67,29 +91,32 @@ var styles = {
     }
   },
   dropdownMenu: {
-    display: 'none',
     position: 'absolute',
     top: '100%',
-    left: '0',
     zIndex: '1000',
     float: 'left',
-    minWidth: '160px',
+    width: '250px',
     padding: '5px 0',
-    margin: '2px 0 0',
+    margin: '0px',
     listStyle: 'none',
     fontSize: '14px',
     textAlign: 'left',
     backgroundColor: '#fff',
     border: '1px solid #ccc',
-    borderRadius: '4px',
     boxShadow: '0 6px 12px rgba(0, 0, 0, 0.175)',
     backgroundClip: 'padding-box',
   },
   dropdownMenuButton: {
+    display: 'inline-block',
     width: '100%',
-    padding: '0px 15px',
-    paddingTop: '10px',
     textAlign: 'left',
+    boxSizing: 'border-box',
+    textDecoration: 'none',
+    color: '#474747',
+  },
+  dropdownMenuButtonText: {
+    padding: '10px 15px',
+    fontSize: '22px',
   }
 };
 

@@ -2,7 +2,32 @@ import React from 'react';
 import Radium from 'radium';
 import { Link } from 'react-router-dom';
 
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import {
+  faHeart as outlineHeart,
+  faEnvelope as outlineEnvelope,
+  faComment as outlineComment
+} from '@fortawesome/fontawesome-free-regular';
+import {
+  faHeart as solidHeart,
+  faEnvelope as solidEnvelope,
+  faComment as solidComment,
+} from '@fortawesome/fontawesome-free-solid';
+
+import { apiInstance } from '../config/env.js';
+
 class TalentBox extends React.Component {
+  triggerLightbox(){
+    const user_id = this.props.id;
+
+    apiInstance.post(`/users/10002/lightbox/20/${user_id}`)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   renderName(){
     const { firstName, lastName, hideName } = this.props;
@@ -19,22 +44,43 @@ class TalentBox extends React.Component {
     return;
   }
 
+  renderIcons(){
+    if(this.props.icons){
+      const { iconsContainerStyle, iconStyle } = styles;
+      const { inLightbox } = this.props;
+
+      return (
+        <div style={ iconsContainerStyle }>
+          <div style={ iconStyle } onClick={() => this.triggerLightbox()}>
+            <FontAwesomeIcon color='white' size='lg' icon={inLightbox ? solidHeart : outlineHeart}/>
+          </div>
+          <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
+          <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
+        </div>
+      );
+    }
+  }
+
   render(){
     const { id, imageUrl } = this.props;
     const { boxStyle, tintStyle } = styles;
     const profileLink = `/talent/${id}`;
 
     return (
-      <Link to={ profileLink }>
-        <div style={{
-          ...boxStyle,
-          ...{ backgroundImage: `url(${imageUrl})`, }}
-        }>
-          <div style={ tintStyle }>
-            { this.renderName() }
+      <div>
+        <Link to={ profileLink }>
+          <div style={{
+            ...boxStyle,
+            ...{ backgroundImage: `url(${imageUrl})`, }}
+          }>
+
+            <div style={ tintStyle }>
+              { this.renderName() }
+            </div>
           </div>
-        </div>
-      </Link>
+        </Link>
+        { this.renderIcons() }
+      </div>
     );
   }
 }
@@ -58,10 +104,10 @@ var styles = {
     transitionDelay: 'initial',
     cursor: 'pointer',
     position: 'relative',
-
+    overflow: 'hidden',
     ':hover': {
       backgroundColor: 'rgba(255, 255, 255, 0.3)',
-    }
+    },
   },
   nameStyle: {
     width: '100%',
@@ -77,6 +123,15 @@ var styles = {
     boxSizing: 'border-box',
     overflow: 'hidden !important',
   },
+  iconsContainerStyle: {
+    textAlign: 'left',
+    padding: '8px',
+    backgroundColor: '#000000CC',
+  },
+  iconStyle: {
+    display: 'inline-block',
+    marginRight: '10px',
+  }
 };
 
 export default Radium(TalentBox);

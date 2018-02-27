@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import DetailList from './DetailList';
+import Subtitle from './Subtitle';
+import { apiInstance } from '../config/env.js';
 
 class SkillsData extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class SkillsData extends React.Component {
   componentDidMount() {
     const { userId } = this.props;
 
-    axios.get(`http://localhost:8000/user/${userId}/skills`)
+    apiInstance.get(`/users/${userId}/skills`)
       .then((response) => {
         const { skills } = response.data;
 
@@ -26,33 +27,35 @@ class SkillsData extends React.Component {
   renderSkills(){
     const { skills } = this.state;
 
-    if(skills){
-      let skillsGroupedByCategory = [];
+    if(skills != null){
+      if(skills.length){
+        let skillsGroupedByCategory = {};
+        console.log(skills);
+        skills.map((element) => {
+          if(!skillsGroupedByCategory[element.category]){
+            skillsGroupedByCategory[element.category] = new Array();
+          }
 
-      skills.map((element) => {
-        if(!skillsGroupedByCategory[element.category]){
-          skillsGroupedByCategory[element.category] = new Array();
-        }
+          skillsGroupedByCategory[element.category].push(element.skill);
+        });
 
-        skillsGroupedByCategory[element.category].push(element.skill);
-      });
-      console.log(skillsGroupedByCategory);
-      for(let i=0; i<skillsGroupedByCategory.length; i++){
-        console.log(skillsGroupedByCategory);
+        let jsx = [];
+        jsx.push(<Subtitle>Skills</Subtitle>);
+
+        Object.keys(skillsGroupedByCategory).forEach(function( key ) {
+          const groupedSkills = skillsGroupedByCategory[key];
+
+          jsx.push(
+            <div key={ key }>
+              <h4>{ key }</h4>
+              <p>{ groupedSkills.join(', ') }</p>
+            </div>
+          );
+        });
+
+        return jsx;
       }
-
-      skillsGroupedByCategory.map((element, i) => {
-        console.log(element);
-        return (
-          <div key={i}>
-            <h2></h2>
-
-          </div>
-        );
-      });
     }
-
-    return;
   }
 
   render() {

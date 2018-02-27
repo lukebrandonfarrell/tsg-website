@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Switch } from 'react-router-dom';
+import { Persist } from 'react-persist';
 
 import { connect } from 'react-redux';
-import { setToken } from './actions';
+import { setToken, setUser } from './actions';
 
 import HomePage from './containers/HomePage';
 import ClientsPage from './containers/ClientsPage';
@@ -12,31 +13,51 @@ import LoginPage from './containers/LoginPage';
 import ProfilePage from './containers/ProfilePage';
 
 import DetailsPage from './containers/DetailsPage';
+import PhysicalPage from './containers/PhysicalPage';
+import MediaPage from './containers/MediaPage';
+import SkillsPage from './containers/SkillsPage';
+import CreditsPage from './containers/CreditsPage';
+import LightboxPage from './containers/LightboxPage';
+import LightboxViewPage from './containers/LightboxViewPage';
 
 class Router extends Component {
-  componentWillMount() {
-    let token = localStorage.getItem('token');
-
-    if(token){
-      this.props.setToken(token);
-    }
-  }
-
   render() {
+    console.log(this.props.auth);
     return (
-      <BrowserRouter>
+      <BrowserRouter basename="/">
         <div>
-          <Route path="/home" component={HomePage} />
+          <Route exact path='/' component={HomePage}/>
           <Route path="/clients" component={ClientsPage}/>
           <Route path="/contact" component={ContactPage}/>
           <Route path="/login" component={LoginPage}/>
           <Route path="/talent/:id" component={ProfilePage}/>
 
           <Route path="/details" component={DetailsPage} />
+          <Route path="/physical" component={PhysicalPage} />
+          <Route path="/media" component={MediaPage} />
+          <Route path="/skills" component={SkillsPage} />
+          <Route path="/credits" component={CreditsPage} />
+          <Switch>
+            <Route exact path="/lightbox" component={LightboxPage} />
+            <Route path="/lightbox/:id" component={LightboxViewPage} />
+          </Switch>
+
+          <Persist
+            name="user"
+            data={this.props.auth}
+            debounce={0}
+            onMount={(data) => this.props.setUser(data)}
+          />
         </div>
       </BrowserRouter>
     );
   }
 }
 
-export default connect(null, { setToken })(Router);
+const mapStateToProps = (state) => {
+  const auth = state.auth;
+
+  return { auth };
+};
+
+export default connect(mapStateToProps, { setToken, setUser })(Router);

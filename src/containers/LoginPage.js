@@ -14,7 +14,7 @@ import '../App.css';
 
 class LoginPage extends Component {
   componentDidUpdate() {
-    if(this.props.loggedIn){
+    if(this.props.token){
       this.props.history.push('/details');
     }
   }
@@ -48,9 +48,9 @@ const styles = {
 };
 
 const mapStateToProps = (state) => {
-  const { loggedIn } = state.jwt;
+  const { token } = state.auth;
 
-  return { loggedIn };
+  return { token };
 };
 
 export default connect(mapStateToProps, { login })(LoginPage);

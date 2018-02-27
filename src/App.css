@@ -21,6 +21,7 @@ body {
 .p-bottom40 { padding-bottom: 40px; }
 .p-top60 { padding-top: 60px; }
 .p-bottom60 { padding-bottom: 60px; }
+.vertical30 { padding: 30px 0px; }
 
 /* Wrapper to set the standard width of the website */
 .wrapper {
