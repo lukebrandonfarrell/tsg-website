@@ -8,6 +8,7 @@ import Float from '../components/Float';
 import MediaComponent from '../components/MediaComponent';
 import PhysicalData from '../components/PhysicalData';
 import SkillsData from '../components/SkillsData';
+import CreditsData from '../components/CreditsData';
 
 import { apiInstance } from '../config/env.js';
 
@@ -114,9 +115,7 @@ class ProfilePage extends Component {
 
               <div className="col span_3_of_4">
                 <div className="section group">
-                  <Title label={ fullName }>
-                    <Button type="button">Send Message</Button>
-                  </Title>
+                  <Title label={ fullName } />
                   <DetailList data={detailsData} />
                 </div>
               </div>
@@ -131,7 +130,11 @@ class ProfilePage extends Component {
             <div className="section group">
               <PhysicalData userId={ this.state.id } />
             </div>
-
+            
+            <div className="section group">
+              <CreditsData userId={ this.state.id } />
+            </div>
+            
             <div className="section group">
               <SkillsData userId={ this.state.id } />
             </div>

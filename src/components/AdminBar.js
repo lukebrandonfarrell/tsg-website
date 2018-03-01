@@ -135,7 +135,7 @@ class AdminBar extends React.Component {
             style={ selectStyle }
           />
         </div>
-
+        {/*
         <Float dir="right">
           <div style={ adminBarSection }>
             <DropdownButton
@@ -145,6 +145,7 @@ class AdminBar extends React.Component {
               reverseDropdownMenu />
           </div>
         </Float>
+        */}
       </div>
     );
   }

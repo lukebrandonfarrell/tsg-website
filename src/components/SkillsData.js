@@ -30,7 +30,7 @@ class SkillsData extends React.Component {
     if(skills != null){
       if(skills.length){
         let skillsGroupedByCategory = {};
-        console.log(skills);
+
         skills.map((element) => {
           if(!skillsGroupedByCategory[element.category]){
             skillsGroupedByCategory[element.category] = new Array();

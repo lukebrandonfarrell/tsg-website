@@ -140,37 +140,75 @@ class MediaComponent extends React.Component {
       }
     }
   }
+  
+  renderPhotosListItem(){
+    const { selected, photos } = this.state;
+    const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
+    const photosSelected = (selected == 'photos') ? itemSelectedStyle : {};
+    
+    if(photos){
+      if(photos.length){
+        return (
+          <li style={ listItemStyle }>
+            <a style={{ ...listItemLinkStyle, ...photosSelected  }} href="#photos"
+              onClick={() => this.setState({ selected : 'photos' })}>
+              Photos
+            </a>
+          </li>
+        );
+      }
+    }
+  }
+  
+  renderVideosListItem(){
+    const { selected, videos } = this.state;
+    const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
+    const videosSelected = (selected == 'videos') ? itemSelectedStyle : {};
+    
+    if(videos){
+      if(videos.length){
+        return (
+          <li style={ listItemStyle }>
+            <a style={{ ...listItemLinkStyle, ...videosSelected }} href="#videos"
+              onClick={() => this.setState({ selected : 'videos' })}>
+              Showreel
+            </a>
+          </li>
+        );
+      }
+    }
+  }
+  
+  renderClipsListItem(){
+    const { selected, clips } = this.state;
+    const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
+    const clipsSelected = (selected == 'clips') ? itemSelectedStyle : {};
+    
+    if(clips){
+      if(clips.length){
+        return (
+          <li style={ listItemStyle }>
+            <a style={{ ...listItemLinkStyle, ...clipsSelected }} href="#clips"
+              onClick={() => this.setState({ selected : 'clips' })}>
+              Voice Clips
+            </a>
+          </li>
+        );
+      }
+    }
+  }
 
   render() {
     const { selected } = this.state;
-    const { listStyle, listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
-
-    const photosSelected = (selected == 'photos') ? itemSelectedStyle : {};
-    const videosSelected = (selected == 'videos') ? itemSelectedStyle : {};
-    const clipsSelected = (selected == 'clips') ? itemSelectedStyle : {};
+    const { listStyle } = styles;
 
     return (
       <div>
         <div>
           <ul style={ listStyle }>
-            <li style={ listItemStyle }>
-              <a style={{ ...listItemLinkStyle, ...photosSelected  }} href="#photos"
-                onClick={() => this.setState({ selected : 'photos' })}>
-                Photos
-              </a>
-            </li>
-            <li style={ listItemStyle }>
-              <a style={{ ...listItemLinkStyle, ...videosSelected }} href="#videos"
-                onClick={() => this.setState({ selected : 'videos' })}>
-                Showreel
-              </a>
-            </li>
-            <li style={ listItemStyle }>
-              <a style={{ ...listItemLinkStyle, ...clipsSelected }} href="#clips"
-                onClick={() => this.setState({ selected : 'clips' })}>
-                Voice Clips
-              </a>
-            </li>
+            { this.renderPhotosListItem() }
+            { this.renderVideosListItem() }
+            { this.renderClipsListItem() }
           </ul>
         </div>
         { this.renderPhotos() }
@@ -198,15 +236,17 @@ const styles = {
     border: '1px solid #ddd',
     borderBottomColor: 'transparent',
     cursor: 'default',
+    borderRadius: '4px 4px 0 0',
   },
   listItemLinkStyle : {
     color: '#3097D1',
+    backgroundColor: '#e5e9ec',
     textDecoration: 'none',
     fontWeight: 'lighter',
     display: 'block',
     padding: '12px 15px',
     borderBottom: '1px solid #ddd',
-    borderRadius: '4px 4px 0 0',
+    borderRadius: '0px',
   },
   imageStyle: {
     display: 'inline-block',
