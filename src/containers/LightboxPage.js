@@ -18,8 +18,8 @@ class LighboxPage extends React.Component {
     };
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps;
+  componentDidMount() {
+    const { id } = this.props;
 
     if(id){
       apiInstance.get(`/users/${id}/lightbox`)

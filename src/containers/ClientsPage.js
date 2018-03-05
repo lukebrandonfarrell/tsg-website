@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from 'react-axios';
 import querystring from 'query-string';
 
 import PageTemplate from './PageTemplate';
 import TalentList from '../components/TalentList';
 import Title from '../components/Title';
 import Paginator from '../components/Paginator';
+
+import { apiInstance } from '../config/env.js';
 
 import '../App.css';
 import '../Grid.css';
@@ -34,7 +36,7 @@ class HomePage extends Component {
   fetchTalent(){
     const page = this.getPage(this.props.location.search);
 
-    axios.get(`http://localhost:8081/users?page=${page}`)
+    apiInstance.get(`/users?page=${page}&type=tsg`)
       .then((response) => {
         const talent = response.data.talent;
         const talentCount = response.data.count;

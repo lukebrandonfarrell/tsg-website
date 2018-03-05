@@ -13,28 +13,13 @@ class MainNavigation extends React.Component {
 
   renderRightNavigation(){
     if(this.props.token){
-      const menuItems = [
-        { link: '/details', label: 'Details' },
-        { link: '/physical', label: 'Physical' },
-        { link: '/media', label: 'Media' },
-        { link: '/skills', label: 'Skills' },
-        { link: '/credits', label: 'Credits' },
-      ];
-
       return (
         <div>
-          <DropdownButton
-            label="Profile"
-            menu={ menuItems } />
           <NavigationButton link="#logout" label="Logout"
             onClick={this.logout.bind(this)} />
         </div>
       );
     }
-
-    return (
-      <NavigationButton link="/login" label="Login" />
-    );
   }
 
   render() {

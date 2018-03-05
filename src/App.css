@@ -1,3 +1,7 @@
+html, body, #root, .routes {
+  height: 100%;
+}
+
 body {
   font-family: Raleway, sans-serif;
    margin:0;
@@ -11,7 +15,6 @@ body {
 
 .center { text-align: center; }
 .left { text-align: left; }
-.stretch-to-bottom { min-height: calc(80vh - 40px); }
 
 .p-top20 { padding-top: 20px; }
 .p-bottom20 { padding-bottom: 20px; }
@@ -32,6 +35,12 @@ body {
 /* Wrapper to set the standard width of narrow componnets on the website */
 .narrow-wrapper {
   width: 40%;
+  margin: 0 auto;
+}
+
+/* Wrapper to set the standard width of very narrow componnets on the website */
+.x-narrow-wrapper {
+  width: 30%;
   margin: 0 auto;
 }
 

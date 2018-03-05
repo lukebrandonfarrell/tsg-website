@@ -95,7 +95,7 @@ class AdminBar extends React.Component {
         </div>
 
         { this.renderLightboxSelect() }
-
+        {/*
         <div style={ adminBarSection }>
           <FontAwesomeIcon
             icon={ faEnvelope }
@@ -135,7 +135,7 @@ class AdminBar extends React.Component {
             style={ selectStyle }
           />
         </div>
-        {/*
+        
         <Float dir="right">
           <div style={ adminBarSection }>
             <DropdownButton

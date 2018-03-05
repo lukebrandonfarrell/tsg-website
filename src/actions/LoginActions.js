@@ -1,9 +1,12 @@
 import { JWT_TOKEN_RECIEVED, JWT_TOKEN_REVOKED, SET_USER } from './types';
 import { apiInstance } from '../config/env.js';
 
-export const login = ({ email, password }) => {
+export const login = ({ email = null, password = null }) => {
   return (dispatch) => {
-    apiInstance.post('/login', { email, password })
+    apiInstance.post('/login', {
+      email: email,
+      password: password
+    })
       .then((response) => {
         const { token } = response.data;
 
@@ -18,7 +21,7 @@ export const login = ({ email, password }) => {
 
           apiInstance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-          fetchUser(dispatch, token);
+          fetchUser(dispatch);
         }else{
           console.log(response);
         }
@@ -35,11 +38,11 @@ export const setUser = (data) => {
   };
 };
 
-function fetchUser(dispatch, token){
-  apiInstance.get('/users/me', {token: token}).then((response) => {
+function fetchUser(dispatch){
+  apiInstance.get('/me').then((response) => {
     dispatch({
       type: SET_USER,
-      payload: response.data,
+      payload: response.data.user,
     });
   });
 }

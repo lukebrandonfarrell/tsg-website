@@ -1,7 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
 
-
 const CustomButton = ({ children, type, disabled }) => {
   return (
     <button

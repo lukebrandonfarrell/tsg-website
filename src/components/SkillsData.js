@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios from 'react-axios';
 import Subtitle from './Subtitle';
 import { apiInstance } from '../config/env.js';
 

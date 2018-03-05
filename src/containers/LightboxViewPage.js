@@ -14,7 +14,6 @@ class LighboxPage extends React.Component {
     super(props);
 
     this.state = {
-      id: null,
       title: 'Lightbox Title',
       talent: null,
     };
@@ -22,13 +21,13 @@ class LighboxPage extends React.Component {
 
   componentDidMount() {
     const lightboxId = this.props.match.params.id;
-    const { id } = this.props;
+    const { id, user_id } = this.props;
 
     if(lightboxId){
-      apiInstance.get(`/users/10002/lightbox/${lightboxId}`)
+      apiInstance.get(`/users/${user_id}/lightbox/${lightboxId}`)
         .then((response) => {
           console.log(response);
-          this.setState({ talent : response.data.talent });
+          this.setState({ title: response.data.title, talent : response.data.talent });
         })
         .catch(function (error) {
           console.log(error);
@@ -68,9 +67,9 @@ class LighboxPage extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { id } = state.auth;
+  const { id, user_id } = state.auth;
 
-  return { id };
+  return { id, user_id };
 };
 
 export default connect(mapStateToProps, null)(LighboxPage);

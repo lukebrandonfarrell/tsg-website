@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from 'react-axios';
 import PageTemplate from './PageTemplate';
 import TalentBox from '../components/TalentBox';
 import Title from '../components/Title';

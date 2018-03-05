@@ -13,9 +13,9 @@ class TalentReel extends React.Component {
   }
 
   componentDidMount() {
-    apiInstance.get('/users/featured')
+    apiInstance.get('/users?type=featured')
       .then((response) => {
-        this.setState({ users : response.data.users });
+        this.setState({ users : response.data.talent });
       })
       .catch(function (error) {
         console.log(error);

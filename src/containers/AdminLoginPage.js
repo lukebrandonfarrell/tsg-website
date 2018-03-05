@@ -4,11 +4,8 @@ import { connect } from 'react-redux';
 import { login } from '../actions';
 
 import LoginForm from '../components/forms/LoginForm';
-import Float from '../components/Float';
 import Title from '../components/Title';
 import ContainerWithBackground from '../components/ContainerWithBackground';
-
-import PageTemplate from './PageTemplate';
 
 import backgroundImage from '../resources/backgrounds/login.jpg';
 import '../App.css';
@@ -22,33 +19,39 @@ class LoginPage extends Component {
 
   render() {
     return (
-      <div className="root">
-        <PageTemplate>
-          <ContainerWithBackground
-            imageUrl={backgroundImage}
-            height="600px"
-            width="50%"
-            style={{ display: 'inline-block' }}>
-          </ContainerWithBackground>
-          
-          <div style={ styles.formStyle }>
-            <Title label='Login' />
-            <LoginForm onSubmit={(data) => this.props.login(data)} />
+      <div style={{height: '100%'}}>
+        <ContainerWithBackground
+          imageUrl={backgroundImage}
+          height="100%"
+          width="100%"
+          style={ styles.containerStyle }>
+
+          <div className='x-narrow-wrapper'>
+            <div style={ styles.formStyle }>
+              <Title label='Login' />
+              <LoginForm onSubmit={(data) => this.props.login(data)} />
+            </div>
           </div>
-        </PageTemplate>
+        </ContainerWithBackground>
       </div>
     );
   }
 }
 
 const styles = {
+  containerStyle: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   formStyle: {
-    width: '48%',
+    width: '100%',
     padding: '25px',
     backgroundColor: 'white',
     display: 'inline-block',
     boxSizing: 'border-box',
     verticalAlign: 'top',
+    borderRadius: '5px',
   }
 };
 

@@ -1,13 +1,15 @@
 import React from 'react';
 
-const ContainerWithBackground = ({ children, imageUrl, height }) => {
+const ContainerWithBackground = ({ children, imageUrl, height, width, style }) => {
   return (
     <div style={{
       ...styles.backgroundImageStyle,
       ...{
         backgroundImage: `url(${imageUrl})`,
+        width: width,
         height: height,
-      }
+      },
+      ...style,
     }}>
       { children }
     </div>

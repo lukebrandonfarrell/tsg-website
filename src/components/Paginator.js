@@ -14,7 +14,7 @@ class Paginator extends React.Component {
       const selected = (page == i) ? itemSelected : {};
 
       paginator.push(
-        <li style={ linkStyle }>
+        <li key={i} style={ linkStyle }>
           <Link to={`${url}?page=${i}`} style={{
             ...itemStyle,
             ...selected,
