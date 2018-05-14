@@ -1,13 +1,13 @@
 import axios from 'axios';
 
-const prod = false;
+const prod = true;
 
-export const config = prod ? {
-  api: 'http://admin.tsgcasting.com'
+const config = prod ? {
+  api: 'https://talentstatus.com/api'
 } : {
   api: 'http://localhost:8081/api'
 };
 
 export const apiInstance = axios.create({
-  baseURL: 'http://localhost:8081/api',
+  baseURL: config.api,
 });

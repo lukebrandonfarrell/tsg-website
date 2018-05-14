@@ -30,15 +30,20 @@ class PhysicalData extends React.Component {
     if(physical != null){
       if(physical.length){
         const physicalData = this.state.physical.map((element) => {
-          return { key: element.field_name, value: element.data };
+          return { key: element.field_name.replace('-', ' '), value: element.data.replace(';', element.field_seperator) };
         });
+
+        //Responsiveness
+        let width = '33%';
+        if (matchMedia('only screen and (max-width: 1260px)').matches){ width = '50%'; }
+        if (matchMedia('only screen and (max-width: 880px)').matches){ width = '100%'; }
 
         return (
           <div>
             <Subtitle>Physical</Subtitle>
             <DetailList
               data={ physicalData }
-              itemWidth="33%"
+              itemWidth={width}
             />
           </div>
         );

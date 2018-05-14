@@ -5,15 +5,19 @@ import Radium from 'radium';
 class NavigationButton extends React.Component {
   render(){
     const { buttonStyle, activeStyle, pStyle } = styles;
-    const { link, label, onClick } = this.props;
+    const { link, label, onClick, width } = this.props;
 
     return (
-      <NavLink exact to={ link } activeStyle={ activeStyle } style={ buttonStyle }>
+      <NavLink exact to={ link } activeStyle={ activeStyle } style={{ ...buttonStyle, ...{ width } }}>
         <p style={ pStyle } onClick={onClick}>{ label }</p>
       </NavLink>
     );
   }
 }
+
+NavigationButton.defaultProps = {
+  width: '120px',
+};
 
 var styles = {
   buttonStyle: {

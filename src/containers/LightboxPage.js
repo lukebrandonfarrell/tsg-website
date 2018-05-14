@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 
 import PageTemplate from './PageTemplate';
 import Title from '../components/Title';
 import Subtitle from '../components/Subtitle';
 import Lightbox from '../components/Lightbox';
+import Wrapper from '../components/Wrapper';
 
 import { apiInstance } from '../config/env.js';
 
@@ -39,7 +39,7 @@ class LighboxPage extends React.Component {
     if(lightboxes){
       return lightboxes.map((element, i) => {
         return (
-          <div key={i} className="col span_2_of_4">
+          <div key={i} className="col span_1_of_3">
             <Lightbox id={ element.id } title={ element.title } />
           </div>
         );
@@ -51,7 +51,7 @@ class LighboxPage extends React.Component {
     return (
       <div className="root">
         <PageTemplate>
-          <div className="narrow-wrapper p-top30 p-bottom30">
+          <Wrapper verticalPadding>
             <Title label='Lightbox' />
             <p>Your lightbox will allow you to favorite other users profiles and share them with the world.</p>
 
@@ -60,7 +60,7 @@ class LighboxPage extends React.Component {
             <div className="section group">
               { this.renderLightboxes() }
             </div>
-          </div>
+          </Wrapper>
         </PageTemplate>
       </div>
     );

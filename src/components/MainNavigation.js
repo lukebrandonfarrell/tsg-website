@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { logout } from '../actions';
+import MediaQuery from 'react-responsive';
 
 import Float from './Float';
 import NavigationButton from './NavigationButton';
 import DropdownButton from './DropdownButton';
+import Wrapper from '../components/Wrapper';
 
 import '../App.css';
 
@@ -26,16 +28,20 @@ class MainNavigation extends React.Component {
     const { navStyle } = styles;
 
     return (
-      <div style={ navStyle }>
-        <div className='wrapper'>
-          <NavigationButton link="/" label="Home" />
-          <NavigationButton link="/clients" label="Clients" />
-          <NavigationButton link="/contact" label="Contact" />
+      <div>
+        <MediaQuery minDeviceWidth={1260}>
+          <div style={ navStyle }>
+            <Wrapper>
+              <NavigationButton link="/" label="Home" />
+              <NavigationButton link="/clients" label="Clients" />
+              <NavigationButton link="/contact" label="Contact" />
 
-          <Float dir='right'>
-            { this.renderRightNavigation() }
-          </Float>
-        </div>
+              <Float dir='right'>
+                { this.renderRightNavigation() }
+              </Float>
+            </Wrapper>
+          </div>
+        </MediaQuery>
       </div>
     );
   }

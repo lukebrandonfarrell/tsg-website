@@ -45,6 +45,7 @@ class MediaComponent extends React.Component {
 
     apiInstance.get(`/users/${userId}/media/clips`)
       .then((response) => {
+        console.log(response);
         this.setState({ clips : response.data });
       })
       .catch(function (error) {
@@ -58,11 +59,16 @@ class MediaComponent extends React.Component {
 
     if(selected == MediaEnum.photos){
       if(photos){
+        //Responsiveness
+        let spanClass = 'span_1_of_4';
+        if (matchMedia('only screen and (max-width: 880px)').matches){ spanClass = 'span_1_of_2'; }
+        if (matchMedia('only screen and (max-width: 550px)').matches){ spanClass = 'span_1_of_1'; }
+
         let jsx = [];
 
         photos.map((element, i) => {
           jsx.push(
-            <div key={i} className="col span_1_of_4">
+            <div key={i} className={`col ${spanClass}`}>
               <div style={{
                 ...imageStyle,
                 ...{ backgroundImage: `url(${element.source})`, }}
@@ -103,19 +109,29 @@ class MediaComponent extends React.Component {
 
     if(selected == MediaEnum.videos){
       if(videos){
+        //Responsiveness
+        let spanClass = 'span_1_of_2';
+        if (matchMedia('only screen and (max-width: 880px)').matches){ spanClass = 'span_1_of_1'; }
+
         return videos.map((element, i) => {
-          return (
-            <div key={i} className="col span_2_of_4">
-              <Video autoPlay loop muted
-                controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}
-                poster="http://sourceposter.jpg"
-                onCanPlayThrough={() => {
-                // Do stuff
-                }}>
-                <source src={ element.source }/>
-              </Video>
-            </div>
-          );
+          const { source } = element;
+
+          if(source.indexOf('www.youtube.com')){
+            return (
+              <div key={i} className={`col ${spanClass}`}>
+                <iframe width='100%' height='300px' src={ source }></iframe>
+              </div>
+            );
+          } else {
+            return (
+              <div key={i} className={`col ${spanClass}`}>
+                <Video muted loop
+                  controls={['PlayPause', 'Seek', 'Time', 'Volume', 'Fullscreen']}>
+                  <source src={ element.source }/>
+                </Video>
+              </div>
+            );
+          }
         });
       }
     }
@@ -140,12 +156,12 @@ class MediaComponent extends React.Component {
       }
     }
   }
-  
+
   renderPhotosListItem(){
     const { selected, photos } = this.state;
     const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
     const photosSelected = (selected == 'photos') ? itemSelectedStyle : {};
-    
+
     if(photos){
       if(photos.length){
         return (
@@ -159,12 +175,12 @@ class MediaComponent extends React.Component {
       }
     }
   }
-  
+
   renderVideosListItem(){
     const { selected, videos } = this.state;
     const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
     const videosSelected = (selected == 'videos') ? itemSelectedStyle : {};
-    
+
     if(videos){
       if(videos.length){
         return (
@@ -178,12 +194,12 @@ class MediaComponent extends React.Component {
       }
     }
   }
-  
+
   renderClipsListItem(){
     const { selected, clips } = this.state;
     const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
     const clipsSelected = (selected == 'clips') ? itemSelectedStyle : {};
-    
+
     if(clips){
       if(clips.length){
         return (
@@ -255,7 +271,7 @@ const styles = {
     backgroundColor: 'black',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
+    backgroundSize: 'contain',
     textAlign: 'center',
     cursor: 'pointer',
   },

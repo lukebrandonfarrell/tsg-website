@@ -28,7 +28,7 @@ var styles = {
     textDecoration: 'none',
     background: 'none',
     height: '60px',
-    fontSize: '24px',
+    fontSize: '22px',
     color: '#fff',
     lineHeight: '60px',
     overflow: 'hidden',

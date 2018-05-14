@@ -1,7 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import DropdownButton from './DropdownButton';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+
+import { setLightbox } from '../actions';
 
 import Float from '../components/Float';
 
@@ -18,11 +21,14 @@ class AdminBar extends React.Component {
     lightboxes: null,
   }
   handleSelectChange = (prop, data) => {
+    this.props.setLightbox(data.value);
     this.setState({ [prop]: data });
   }
 
   componentDidMount() {
-    apiInstance.get('/users/10002/lightbox')
+    const { id } = this.props;
+
+    apiInstance.get(`/users/${id}/lightbox`)
       .then((response) => {
         this.setState({ lightboxes: response.data.lightboxes });
       })
@@ -55,7 +61,7 @@ class AdminBar extends React.Component {
               value={lightboxValue}
               onChange={(data) => this.handleSelectChange('lightboxSelectedOption', data)}
               options={lightboxes.map((element) => {
-                return { value: element.title, label: element.title };
+                return { value: element.id, label: element.title };
               })}
               style={ selectStyle }
             />
@@ -135,7 +141,7 @@ class AdminBar extends React.Component {
             style={ selectStyle }
           />
         </div>
-        
+
         <Float dir="right">
           <div style={ adminBarSection }>
             <DropdownButton
@@ -171,4 +177,10 @@ const styles = {
   }
 };
 
-export default AdminBar;
+const mapStateToProps = (state) => {
+  const { id } = state.auth;
+
+  return { id };
+};
+
+export default connect(mapStateToProps, { setLightbox })(AdminBar);

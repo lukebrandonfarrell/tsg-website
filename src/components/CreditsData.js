@@ -16,8 +16,6 @@ class CreditsData extends React.Component {
     apiInstance.get(`/users/${userId}/credits`)
       .then((response) => {
         const { credits } = response.data;
-        
-        console.log(credits);
 
         this.setState({ credits });
       })
@@ -32,14 +30,13 @@ class CreditsData extends React.Component {
 
     if(credits != null){
       if(credits.length){
-        const creditsJSX = credits.sort((a, b) => a.value.localeCompare(b.value))
-          .map((element) => {
-            return (
-              <div style={ creditsRowStyle }>
-                { element.value }
-              </div>
-            );
-          });
+        const creditsJSX = credits.map((element) => {
+          return (
+            <div key={ element.id } style={ creditsRowStyle }>
+              { element.value }
+            </div>
+          );
+        });
         
         return (
           <div>

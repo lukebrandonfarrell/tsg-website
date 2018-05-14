@@ -1,11 +1,11 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
 
 import PageTemplate from './PageTemplate';
 import TalentList from '../components/TalentList';
 import Subtitle from '../components/Subtitle';
 import Lightbox from '../components/Lightbox';
+import Wrapper from '../components/Wrapper';
 
 import { apiInstance } from '../config/env.js';
 
@@ -53,13 +53,13 @@ class LighboxPage extends React.Component {
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper vertical30">
+          <Wrapper verticalPadding>
             <Subtitle>{ this.state.title }</Subtitle>
 
             <div className="section group">
               <TalentList talent={ this.state.talent } />
             </div>
-          </div>
+          </Wrapper>
         </PageTemplate>
       </div>
     );

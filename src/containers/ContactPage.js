@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import PageTemplate from './PageTemplate';
 import Title from '../components/Title';
 import Row from '../components/Row';
+import Wrapper from '../components/Wrapper';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faMapMarker, faEnvelope, faPhone } from '@fortawesome/fontawesome-free-solid';
@@ -14,7 +15,7 @@ class HomePage extends Component {
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper vertical30">
+          <Wrapper verticalPadding>
             <Title label='Contact' />
             <div className="section group">
               <p>Feel free to contact us if you have any queries</p>
@@ -33,7 +34,7 @@ class HomePage extends Component {
                 </Row>
               </div>
             </div>
-          </div>
+          </Wrapper>
         </PageTemplate>
       </div>
     );

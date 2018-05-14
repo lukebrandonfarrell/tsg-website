@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Wrapper from '../components/Wrapper';
 import logo from '../logo.png';
 
 const Footer = (props) => {
@@ -7,12 +7,12 @@ const Footer = (props) => {
 
   return (
     <div id="footer" style={ footerStyle }>
-      <div className='wrapper'>
+      <Wrapper>
         <div style={ containerStyle }>
           <img src={ logo } alt="logo" style={ imgStyle } />
           <p style={ textStyle }>Copyright © 2016 TSG</p>
         </div>
-      </div>
+      </Wrapper>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import axios from 'react-axios';
 import PageTemplate from './PageTemplate';
 import TalentBox from '../components/TalentBox';
@@ -9,8 +10,10 @@ import MediaComponent from '../components/MediaComponent';
 import PhysicalData from '../components/PhysicalData';
 import SkillsData from '../components/SkillsData';
 import CreditsData from '../components/CreditsData';
+import Wrapper from '../components/Wrapper';
 
 import { apiInstance } from '../config/env.js';
+import pivotData from '../resources/pivot';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faEnvelope, faHeart } from '@fortawesome/fontawesome-free-regular';
@@ -22,16 +25,19 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
 
+    const params = queryString.parse(this.props.location.search);
+    const { member_id } = params;
+
+    const oldId = this.pivot(member_id);
+
     this.state = {
-      id: this.props.match.params.id,
+      id: oldId || this.props.match.params.id,
       primaryPhotoUrl: null,
       firstName: 'Talent',
-      lastName: 'Status',
+      lastName: 'Member',
       age: null,
       gender: null,
       location: null,
-      website: null,
-      agent: null,
       photos: null,
       videos: null,
       clips: null,
@@ -40,16 +46,26 @@ class ProfilePage extends Component {
     };
   }
 
+  //Pivot member_id to id
+  pivot(id){
+    if(!id){ return null; }
+
+    for(let i=0; i<pivotData.length; i++){
+      if(id == pivotData[i].user_id){
+        return pivotData[i].id;
+      }
+    }
+  }
+
   componentDidMount() {
     this.getProfile();
   }
 
   getProfile(){
-    const userId = this.props.match.params.id;
+    const userId = this.state.id;
 
     apiInstance.get(`/users/${userId}`)
       .then((response) => {
-        console.log(response);
         const {
           photo_primary,
           first_name,
@@ -97,23 +113,32 @@ class ProfilePage extends Component {
       {key : 'Age', value : age},
       {key : 'Gender', value : gender},
       {key : 'Location', value : location},
-      {key : 'Website', value : website},
-      {key : 'Agent', value : agent}
     ];
+
+    //Responsiveness
+    let profilePictureSpanClass = 'span_1_of_4'; let detailsSpanClass = 'span_3_of_4';
+    if (matchMedia('only screen and (max-width: 880px)').matches){
+      profilePictureSpanClass = 'span_2_of_4';
+      detailsSpanClass = 'span_2_of_4';
+    }
+    if (matchMedia('only screen and (max-width: 550px)').matches){
+      profilePictureSpanClass = 'span_1_of_1';
+      detailsSpanClass = 'span_1_of_1';
+    }
 
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper vertical30">
+          <Wrapper verticalPadding>
             <div className="section group">
-              <div className="col span_1_of_4">
+              <div className={`col ${profilePictureSpanClass}`}>
                 <TalentBox
                   id="1"
                   imageUrl={ primaryPhotoUrl || defaultPhoto }
                   hideName />
               </div>
 
-              <div className="col span_3_of_4">
+              <div className={`col ${detailsSpanClass}`}>
                 <div className="section group">
                   <Title label={ fullName } />
                   <DetailList data={detailsData} />
@@ -130,15 +155,15 @@ class ProfilePage extends Component {
             <div className="section group">
               <PhysicalData userId={ this.state.id } />
             </div>
-            
+
             <div className="section group">
               <CreditsData userId={ this.state.id } />
             </div>
-            
+
             <div className="section group">
               <SkillsData userId={ this.state.id } />
             </div>
-          </div>
+          </Wrapper>
         </PageTemplate>
       </div>
     );

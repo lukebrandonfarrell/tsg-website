@@ -23,6 +23,7 @@ const ContainerOverlay = ({ children, height, color, bottom }) => {
 const styles = {
   overlayStyle: {
     width: '100%',
+    textAlign: 'center',
   }
 };
 

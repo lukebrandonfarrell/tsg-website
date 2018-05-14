@@ -30,8 +30,14 @@ class TalentReel extends React.Component {
         const photo = element.photo_primary[0];
 
         if(photo){
+          
+          let width = '250px';
+          if (matchMedia('only screen and (max-width: 1260px)').matches){ width = '230px'; }
+          if (matchMedia('only screen and (max-width: 880px)').matches){ width = '200px'; }
+          if (matchMedia('only screen and (max-width: 550px)').matches){ width = '25%'; }
+          
           return (
-            <div key={i} style={styles.reelPhotoStyle}>
+            <div key={i} style={{ ...styles.reelPhotoStyle, ...{ width } }}>
               <TalentBox
                 id={ element.id }
                 imageUrl={ photo.source }
@@ -59,7 +65,7 @@ const styles = {
     whiteSpace: 'nowrap',
   },
   reelPhotoStyle: {
-    width: '12%',
+    width: '250px',
     display: 'inline-block',
   }
 };

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import axios from 'react-axios';
 import querystring from 'query-string';
 
 import PageTemplate from './PageTemplate';
 import TalentList from '../components/TalentList';
 import Title from '../components/Title';
 import Paginator from '../components/Paginator';
+import Wrapper from '../components/Wrapper';
 
 import { apiInstance } from '../config/env.js';
 
@@ -36,7 +36,7 @@ class HomePage extends Component {
   fetchTalent(){
     const page = this.getPage(this.props.location.search);
 
-    apiInstance.get(`/users?page=${page}&type=tsg`)
+    apiInstance.get(`/users?page=${page}&type=tsg&lightbox_id=80`)
       .then((response) => {
         const talent = response.data.talent;
         const talentCount = response.data.count;
@@ -61,13 +61,13 @@ class HomePage extends Component {
     return (
       <div className="root">
         <PageTemplate>
-          <div className="wrapper p-top30">
+          <Wrapper verticalPadding>
             <Title label='Clients' />
             <div className="section group">
               <TalentList talent={ this.state.talent } />
             </div>
             <Paginator url='/clients' page={this.state.page} count={this.state.talentCount} />
-          </div>
+          </Wrapper>
         </PageTemplate>
       </div>
     );

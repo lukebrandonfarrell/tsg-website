@@ -1,15 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Wrapper from '../components/Wrapper';
 import '../App.css';
 
 const Header = ({ logo, tagline }) => {
   const { headerStyle, logoStyle, taglineStyle } = styles;
+  
+  let logoOnly = false;
+  if (matchMedia('only screen and (max-width: 880px)').matches){ logoOnly = true; }
 
   return (
     <div style={ headerStyle }>
-      <div className='wrapper'>
-        <img src={ logo } style={ logoStyle } />
-        <h1 style={ taglineStyle }>{ tagline }</h1>
-      </div>
+      <Wrapper>
+        <Link exact="true" to='/'>
+          <img src={ logo } style={ logoStyle } />
+        </Link>
+        { logoOnly || <h1 style={ taglineStyle }>{ tagline }</h1> }
+      </Wrapper>
     </div>
   );
 };

@@ -48,6 +48,7 @@ const styles = {
     fontSize: '18px',
     boxSizing: 'border-box',
     display: 'inline-block',
+    textTransform: 'capitalize',
   }
 };
 

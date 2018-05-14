@@ -33,6 +33,17 @@
 	width: 23.8%;
 }
 
+/*  GRID OF THREE  */
+.span_1_of_3 {
+	width: 32%;
+}
+.span_2_of_3 {
+	width: 66%;
+}
+.span_3_of_3 {
+	width: 100%;
+}
+
 /*  GRID OF TWO  */
 .span_2_of_2 {
 	width: 100%;
@@ -41,9 +52,7 @@
 	width: 48%;
 }
 
-/*  GO FULL WIDTH BELOW 480 PIXELS */
-@media only screen and (max-width: 480px) {
-	.col {  margin: 1% 0 1% 0%; }
-	.span_1_of_4, .span_2_of_4, .span_3_of_4, .span_4_of_4 { width: 100%; }
-	.span_2_of_2, .span_1_of_2 { width: 100%; }
+/*  GRID OF ONE  */
+.span_1_of_1 {
+	width: 100%;
 }

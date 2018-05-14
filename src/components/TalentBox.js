@@ -1,5 +1,6 @@
 import React from 'react';
 import Radium from 'radium';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -18,9 +19,10 @@ import { apiInstance } from '../config/env.js';
 
 class TalentBox extends React.Component {
   triggerLightbox(){
-    const user_id = this.props.id;
+    const { id } = this.props;
+    const lightbox_id = this.props.selectedLigthtboxId;
 
-    apiInstance.post(`/users/10002/lightbox/20/${user_id}`)
+    apiInstance.post(`/lightbox/${lightbox_id}/${id}`)
       .then((response) => {
         console.log(response);
       })
@@ -47,12 +49,12 @@ class TalentBox extends React.Component {
   renderIcons(){
     if(this.props.icons){
       const { iconsContainerStyle, iconStyle } = styles;
-      const { inLightbox } = this.props;
-
+      const { lightbox } = this.props;
+  
       return (
         <div style={ iconsContainerStyle }>
           <div style={ iconStyle } onClick={() => this.triggerLightbox()}>
-            <FontAwesomeIcon color='white' size='lg' icon={inLightbox ? solidHeart : outlineHeart}/>
+            <FontAwesomeIcon color='white' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/>
           </div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
@@ -131,7 +133,14 @@ var styles = {
   iconStyle: {
     display: 'inline-block',
     marginRight: '10px',
+    cursor: 'pointer',
   }
 };
 
-export default Radium(TalentBox);
+const mapStateToProps = (state) => {
+  const { selectedLigthtboxId } = state.lightbox;
+
+  return { selectedLigthtboxId };
+};
+
+export default connect(mapStateToProps, null)(Radium(TalentBox));

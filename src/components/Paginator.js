@@ -25,31 +25,40 @@ class Paginator extends React.Component {
       );
     }
 
-    const padding = 4;
+    //Variables
+    let padding = 4;
+    let firstButtonText = 'First Page';
+    let lastButtonText = 'Last Page';
+    
+    //Responsiveness
+    if (matchMedia('only screen and (max-width: 550px)').matches){ 
+      firstButtonText = '<<'; lastButtonText = '>>'; padding = 3;
+    }
+    
+    //Calculations
     const frontPadding = (page < padding) ? 0 : page - padding;
     const backPadding = (page > (totalPages - (padding - 1))) ? totalPages : page + (padding - 1);
-
     paginator = paginator.slice(frontPadding, backPadding);
 
     paginator.unshift(
-      <li style={ linkStyle }>
+      <li key='first' style={ linkStyle }>
         <Link to={`${url}?page=1`} style={{
           ...itemStyle,
           ...firstItemStyle
         }}>
-          First Page
+          { firstButtonText }
         </Link>
       </li>
     );
 
     paginator.push(
-      <li style={ linkStyle }>
+      <li key='last' style={ linkStyle }>
         <Link to={`${url}?page=${totalPages}`} style={{
           ...itemStyle,
           ...lastItemStyle
 
         }}>
-          Last Page
+          { lastButtonText }
         </Link>
       </li>
     );
