@@ -5,7 +5,7 @@ import '../App.css';
 
 const Header = ({ logo, tagline }) => {
   const { headerStyle, logoStyle, taglineStyle } = styles;
-  
+
   let logoOnly = false;
   if (matchMedia('only screen and (max-width: 880px)').matches){ logoOnly = true; }
 
