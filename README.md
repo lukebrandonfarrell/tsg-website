@@ -10,4 +10,4 @@ We strived in building an agency dedicated to finding work for our clients and n
 
 # Documentation
 
-The tecnical documentation for the website is hosted on the GitHub Wiki and can be found <a href="https://github.com/LukeBrandonFarrell/Talent-Status/wiki" target="_blank">here</a>. The website is built with JavaScript using React amd Redux. It uses a API built in Laravel to retrieve data.
+The tecnical documentation for the website is hosted on the GitHub Wiki and can be found <a href="https://github.com/LukeBrandonFarrell/TSG/wiki" target="_blank">here</a>. The website is built with JavaScript using React amd Redux. It uses a API built in Laravel to retrieve data.
