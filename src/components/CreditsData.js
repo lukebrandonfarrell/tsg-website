@@ -33,11 +33,11 @@ class CreditsData extends React.Component {
         const creditsJSX = credits.map((element) => {
           return (
             <div key={ element.id } style={ creditsRowStyle }>
-              { element.value }
+              { element.credit_category } : { element.value }
             </div>
           );
         });
-        
+
         return (
           <div>
             <Subtitle>Credits</Subtitle>
