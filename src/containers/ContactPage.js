@@ -22,7 +22,7 @@ class HomePage extends Component {
               <div>
                 <Row>
                   <FontAwesomeIcon icon={faPhone}/>
-                  <p class="test">0208 611 2763</p>
+                  <p>0208 611 2763</p>
                 </Row>
                 <Row>
                   <FontAwesomeIcon icon={faEnvelope}/>

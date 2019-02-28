@@ -22,7 +22,7 @@ class TalentBox extends React.Component {
     const { id } = this.props;
     const lightbox_id = this.props.selectedLigthtboxId;
 
-    apiInstance.post(`/lightbox/${lightbox_id}/${id}`)
+    apiInstance.post(`/lightbox1/${lightbox_id}/${id}`)
       .then((response) => {
         console.log(response);
       })
