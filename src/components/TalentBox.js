@@ -52,8 +52,8 @@ class TalentBox extends React.Component {
   
       return (
         <div style={ iconsContainerStyle }>
-          <div style={ iconStyle } onClick={() => this.triggerLightbox()}>
-            <FontAwesomeIcon color='white' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/>
+          <div style={ [styles.iconStyle, styles.iconRemove] } onClick={() => this.triggerLightbox()}>
+            <FontAwesomeIcon color='red' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/> Remove
           </div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
@@ -132,6 +132,10 @@ var styles = {
     display: 'inline-block',
     marginRight: '10px',
     cursor: 'pointer',
+  },
+  iconRemove: {
+    float: 'right',
+    color: 'red'
   }
 };
 
