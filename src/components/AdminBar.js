@@ -6,10 +6,8 @@ import 'react-select/dist/react-select.css';
 
 import { setLightbox } from '../actions';
 
-import Float from '../components/Float';
-
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faLightbulb, faCommentAlt, faEnvelope } from '@fortawesome/fontawesome-free-regular';
+import { faLightbulb } from '@fortawesome/fontawesome-free-regular';
 import { apiInstance } from '../config/env.js';
 
 class AdminBar extends React.Component {
@@ -75,16 +73,7 @@ class AdminBar extends React.Component {
     const {
       adminBarStyle,
       adminBarSection,
-      selectStyle,
-      iconStyle
     } = styles;
-
-    const {
-      smsboxSelectedOption,
-      mailboxSelectedOption
-    } = this.state;
-    const smsboxValue = smsboxSelectedOption && smsboxSelectedOption.value;
-    const mailboxValue = mailboxSelectedOption && mailboxSelectedOption.value;
 
     const menuItems = [
       { link: '/dashboard', label: 'Dashboard' },

@@ -6,7 +6,7 @@ import { TextBox, Button } from './components';
 import Space from '../Space';
 
 const LoginForm = (props) => {
-  const { handleSubmit, reset, submitting } = props;
+  const { handleSubmit, submitting } = props;
   return (
     <form onSubmit={handleSubmit}>
       <Space vertical="15px" />

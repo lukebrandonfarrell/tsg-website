@@ -57,7 +57,7 @@ class MediaComponent extends React.Component {
     const { selected, photos, lightboxOpen, lightboxIndex } = this.state;
     const { imageStyle } = styles;
 
-    if(selected == MediaEnum.photos){
+    if(selected === MediaEnum.photos){
       if(photos){
         //Responsiveness
         let spanClass = 'span_1_of_4';
@@ -107,7 +107,7 @@ class MediaComponent extends React.Component {
   renderVideos(){
     const { selected, videos } = this.state;
 
-    if(selected == MediaEnum.videos){
+    if(selected === MediaEnum.videos){
       if(videos){
         //Responsiveness
         let spanClass = 'span_1_of_2';
@@ -119,7 +119,7 @@ class MediaComponent extends React.Component {
           if(source.indexOf('www.youtube.com')){
             return (
               <div key={i} className={`col ${spanClass}`}>
-                <iframe width='100%' height='300px' src={ source }></iframe>
+                <iframe title='Video' width='100%' height='300px' src={ source }></iframe>
               </div>
             );
           } else {
@@ -141,7 +141,7 @@ class MediaComponent extends React.Component {
     const { selected, clips } = this.state;
     const { audioPlayerStyle } = styles;
 
-    if(selected == MediaEnum.clips){
+    if(selected === MediaEnum.clips){
       if(clips){
         return clips.map((element, i) => {
           return (
@@ -160,7 +160,7 @@ class MediaComponent extends React.Component {
   renderPhotosListItem(){
     const { selected, photos } = this.state;
     const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
-    const photosSelected = (selected == 'photos') ? itemSelectedStyle : {};
+    const photosSelected = (selected === 'photos') ? itemSelectedStyle : {};
 
     if(photos){
       if(photos.length){
@@ -179,7 +179,7 @@ class MediaComponent extends React.Component {
   renderVideosListItem(){
     const { selected, videos } = this.state;
     const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
-    const videosSelected = (selected == 'videos') ? itemSelectedStyle : {};
+    const videosSelected = (selected === 'videos') ? itemSelectedStyle : {};
 
     if(videos){
       if(videos.length){
@@ -198,7 +198,7 @@ class MediaComponent extends React.Component {
   renderClipsListItem(){
     const { selected, clips } = this.state;
     const { listItemStyle, listItemLinkStyle, itemSelectedStyle } = styles;
-    const clipsSelected = (selected == 'clips') ? itemSelectedStyle : {};
+    const clipsSelected = (selected === 'clips') ? itemSelectedStyle : {};
 
     if(clips){
       if(clips.length){
@@ -215,7 +215,6 @@ class MediaComponent extends React.Component {
   }
 
   render() {
-    const { selected } = this.state;
     const { listStyle } = styles;
 
     return (

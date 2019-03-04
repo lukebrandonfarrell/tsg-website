@@ -7,11 +7,11 @@ class Paginator extends React.Component {
   renderPages(){
     const { itemStyle, itemSelected, firstItemStyle, lastItemStyle, linkStyle } = styles;
     const { url, page, count } = this.props;
-    const totalPages = parseInt(count / 16) + 1;
+    const totalPages = parseInt(count / 16, 10) + 1;
     let paginator = [];
 
     for(var i=1; i<=totalPages; i++){
-      const selected = (page == i) ? itemSelected : {};
+      const selected = (page === i) ? itemSelected : {};
 
       paginator.push(
         <li key={i} style={ linkStyle }>

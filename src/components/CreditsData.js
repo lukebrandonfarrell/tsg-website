@@ -1,5 +1,4 @@
 import React from 'react';
-import DetailList from './DetailList';
 import Subtitle from './Subtitle';
 import { apiInstance } from '../config/env.js';
 

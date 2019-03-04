@@ -34,7 +34,7 @@ class PageTemplate extends React.Component {
             pageWrapId={ 'page-wrap' } 
             outerContainerId={ 'outer-container' }
             width={ '100%' }
-            customCrossIcon={ <img src={ crossSvg } /> }>
+            customCrossIcon={ <img src={ crossSvg } alt="Media" /> }>
             <NavigationButton link="/" label="Home" width="100%" />
             <NavigationButton link="/clients" label="Clients" width="100%" />
             <NavigationButton link="/contact" label="Contact" width="100%" />

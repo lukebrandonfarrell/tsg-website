@@ -2,7 +2,7 @@ import React from 'react';
 import TalentBox from '../components/TalentBox';
 import defaultPhoto from '../default-photo.png';
 
-const TalentList = ({ talent }) => {
+const TalentList = ({ talent, lightboxId }) => {
   if(talent){
     return talent.map((element) => {
       let photo = defaultPhoto;
@@ -22,6 +22,8 @@ const TalentList = ({ talent }) => {
             lastName={element.last_name}
             imageUrl={photo}
             lightbox={ element.lightbox_link ? true : false }
+            selectedLigthtboxId={ lightboxId }
+            lightbox_id = { lightboxId }
             icons />
         </div>
       );

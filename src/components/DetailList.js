@@ -22,6 +22,8 @@ class DetailList extends React.Component {
                 { element.value }
               </div>
             </div>);
+        }else{
+          return null;
         }
       });
     }

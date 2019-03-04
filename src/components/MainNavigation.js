@@ -5,7 +5,6 @@ import MediaQuery from 'react-responsive';
 
 import Float from './Float';
 import NavigationButton from './NavigationButton';
-import DropdownButton from './DropdownButton';
 import Wrapper from '../components/Wrapper';
 
 import '../App.css';

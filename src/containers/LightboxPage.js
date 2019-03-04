@@ -24,7 +24,6 @@ class LighboxPage extends React.Component {
     if(id){
       apiInstance.get(`/users/${id}/lightbox`)
         .then((response) => {
-          console.log(response);
           this.setState({ lightboxes: response.data.lightboxes });
         })
         .catch(function (error) {

@@ -2,7 +2,7 @@ import React from 'react';
 
 class Subtitle extends React.Component {
   render() {
-    const { containerStyle, textStyle, plusStyle } = styles;
+    const { containerStyle, textStyle } = styles;
 
     return (
       <div style={ containerStyle }>

@@ -5,8 +5,6 @@ import { createStore, applyMiddleware } from 'redux';
 import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 
-import { setToken } from './actions';
-
 import Router from './Router';
 
 class App extends Component {

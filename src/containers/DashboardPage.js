@@ -1,11 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import { Line, Pie } from 'react-chartjs-2';
 
 import PageTemplate from './PageTemplate';
 import Title from '../components/Title';
 import Subtitle from '../components/Subtitle';
-import Lightbox from '../components/Lightbox';
 import Wrapper from '../components/Wrapper';
 
 class DashboardPage extends React.Component {

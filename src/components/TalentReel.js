@@ -1,7 +1,6 @@
 import React from 'react';
 import TalentBox from './TalentBox';
 import { apiInstance } from '../config/env.js';
-import defaultPhoto from '../default-photo.png';
 
 class TalentReel extends React.Component {
   constructor(props) {
@@ -44,6 +43,8 @@ class TalentReel extends React.Component {
                 hideName />
             </div>
           );
+        }else{
+          return null;
         }
       });
     }

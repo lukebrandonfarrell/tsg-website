@@ -8,7 +8,6 @@ import Wrapper from '../components/Wrapper';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faMapMarker, faEnvelope, faPhone } from '@fortawesome/fontawesome-free-solid';
 import '../App.css';
-import logo from '../logo.jpg';
 
 class HomePage extends Component {
   render() {

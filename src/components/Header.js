@@ -13,7 +13,7 @@ const Header = ({ logo, tagline }) => {
     <div style={ headerStyle }>
       <Wrapper>
         <Link exact="true" to='/'>
-          <img src={ logo } style={ logoStyle } />
+          <img src={ logo } style={ logoStyle } alt='Logo' />
         </Link>
         { logoOnly || <h1 style={ taglineStyle }>{ tagline }</h1> }
       </Wrapper>

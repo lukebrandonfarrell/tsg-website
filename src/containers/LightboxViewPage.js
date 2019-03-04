@@ -16,17 +16,17 @@ class LighboxPage extends React.Component {
     this.state = {
       title: 'Lightbox Title',
       talent: null,
+      lightboxId: this.props.match.params.id
     };
   }
 
   componentDidMount() {
     const lightboxId = this.props.match.params.id;
-    const { id, user_id } = this.props;
+    const { user_id } = this.props;
 
     if(lightboxId){
       apiInstance.get(`/users/${user_id}/lightbox/${lightboxId}`)
         .then((response) => {
-          console.log(response);
           this.setState({ title: response.data.title, talent : response.data.talent });
         })
         .catch(function (error) {
@@ -55,9 +55,8 @@ class LighboxPage extends React.Component {
         <PageTemplate>
           <Wrapper verticalPadding>
             <Subtitle>{ this.state.title }</Subtitle>
-
             <div className="section group">
-              <TalentList talent={ this.state.talent } />
+              <TalentList talent={ this.state.talent } lightboxId={ this.state.lightboxId } />
             </div>
           </Wrapper>
         </PageTemplate>

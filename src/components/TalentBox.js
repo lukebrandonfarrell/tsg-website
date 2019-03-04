@@ -10,21 +10,20 @@ import {
   faComment as outlineComment
 } from '@fortawesome/fontawesome-free-regular';
 import {
-  faHeart as solidHeart,
-  faEnvelope as solidEnvelope,
-  faComment as solidComment,
+  faHeart as solidHeart
 } from '@fortawesome/fontawesome-free-solid';
 
 import { apiInstance } from '../config/env.js';
 
 class TalentBox extends React.Component {
   triggerLightbox(){
-    const { id } = this.props;
-    const lightbox_id = this.props.selectedLigthtboxId;
+    const { id, lightbox_id } = this.props;
 
-    apiInstance.post(`/lightbox1/${lightbox_id}/${id}`)
+    console.log(this.props);
+
+    apiInstance.delete(`/lightbox/${lightbox_id}/${id}`)
       .then((response) => {
-        console.log(response);
+        window.location.reload();
       })
       .catch(function (error) {
         console.log(error);
@@ -99,7 +98,6 @@ var styles = {
   },
   tintStyle: {
     paddingBottom: '135%',
-    transition: 'background-color 0.5s ease',
     transitionProperty: 'background-color',
     transitionDuration: '0.5s',
     transitionTimingFunction: 'ease',

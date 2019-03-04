@@ -5,7 +5,7 @@ const prod = true;
 const config = prod ? {
   api: 'https://talentstatus.com/api'
 } : {
-  api: 'http://localhost:8081/api'
+  api: 'http://localhost:8000/api'
 };
 
 export const apiInstance = axios.create({

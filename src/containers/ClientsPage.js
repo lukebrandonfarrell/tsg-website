@@ -28,7 +28,7 @@ class HomePage extends Component {
     const page = this.getPage(this.props.location.search); //1
     const prevPage = this.getPage(prevProps.location.search);
 
-    if(prevState.page != page && prevPage != page){
+    if(prevState.page !== page && prevPage !== page){
       this.fetchTalent();
     }
   }
@@ -51,7 +51,7 @@ class HomePage extends Component {
   getPage(query){
     var params = querystring.parse(query);
     if(params.page){
-      return parseInt(params.page);
+      return parseInt(params.page, 10);
     }
 
     return 1;

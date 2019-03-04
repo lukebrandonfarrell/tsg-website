@@ -1,24 +1,17 @@
 import React, { Component } from 'react';
 import queryString from 'query-string';
-import axios from 'react-axios';
 import PageTemplate from './PageTemplate';
 import TalentBox from '../components/TalentBox';
 import Title from '../components/Title';
 import DetailList from '../components/DetailList';
-import Float from '../components/Float';
 import MediaComponent from '../components/MediaComponent';
 import PhysicalData from '../components/PhysicalData';
 import SkillsData from '../components/SkillsData';
 import CreditsData from '../components/CreditsData';
 import Wrapper from '../components/Wrapper';
-
 import { apiInstance } from '../config/env.js';
 import pivotData from '../resources/pivot';
-
-import FontAwesomeIcon from '@fortawesome/react-fontawesome';
-import { faEnvelope, faHeart } from '@fortawesome/fontawesome-free-regular';
 import defaultPhoto from '../default-photo.png';
-import { Button } from '../components/forms/components';
 import '../App.css';
 
 class ProfilePage extends Component {
@@ -51,7 +44,7 @@ class ProfilePage extends Component {
     if(!id){ return null; }
 
     for(let i=0; i<pivotData.length; i++){
-      if(id == pivotData[i].user_id){
+      if(id === pivotData[i].user_id){
         return pivotData[i].id;
       }
     }
@@ -102,9 +95,7 @@ class ProfilePage extends Component {
       lastName,
       age,
       gender,
-      location,
-      website,
-      agent
+      location
     } = this.state;
 
     const fullName = `${firstName} ${lastName}`;
