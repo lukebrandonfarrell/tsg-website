@@ -2,7 +2,7 @@ import React from 'react';
 import TalentBox from '../components/TalentBox';
 import defaultPhoto from '../default-photo.png';
 
-const TalentList = ({ talent, lightboxId }) => {
+const TalentList = ({ talent, lightboxId, editable }) => {
   if(talent){
     return talent.map((element) => {
       let photo = defaultPhoto;
@@ -24,6 +24,7 @@ const TalentList = ({ talent, lightboxId }) => {
             lightbox={ element.lightbox_link ? true : false }
             selectedLigthtboxId={ lightboxId }
             lightbox_id = { lightboxId }
+            editable = { editable }
             icons />
         </div>
       );

@@ -49,12 +49,22 @@ class TalentBox extends React.Component {
     if(this.props.icons){
       const { iconsContainerStyle, iconStyle } = styles;
       const { lightbox } = this.props;
-  
+      
+      if(this.props.editable){
+        return (
+          <div style={ iconsContainerStyle }>
+            <div style={ [styles.iconStyle, styles.iconRemove] } onClick={() => this.triggerLightbox()}>
+              <FontAwesomeIcon color='red' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/> Remove
+            </div>
+            <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
+            <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
+          </div>
+        );
+      }
+
       return (
         <div style={ iconsContainerStyle }>
-          <div style={ [styles.iconStyle, styles.iconRemove] } onClick={() => this.triggerLightbox()}>
-            <FontAwesomeIcon color='red' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/> Remove
-          </div>
+          <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/></div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
         </div>
@@ -141,7 +151,6 @@ var styles = {
 
 const mapStateToProps = (state) => {
   const { selectedLigthtboxId } = state.lightbox;
-
   return { selectedLigthtboxId };
 };
 
