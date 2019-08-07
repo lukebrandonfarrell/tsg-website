@@ -127,6 +127,10 @@ class ProfilePage extends Component {
                   id="1"
                   imageUrl={ primaryPhotoUrl || defaultPhoto }
                   hideName />
+                <div class="print_options">
+                  <a href={`http://127.0.0.1:8000/api/print_card/${ this.state.id }`}>Print card</a>
+                  <a style={{ float: 'right'}} href={`http://127.0.0.1:8000/api/print_cv/${ this.state.id }`}>Print CV</a>
+                </div>
               </div>
 
               <div className={`col ${detailsSpanClass}`}>
@@ -137,6 +141,7 @@ class ProfilePage extends Component {
               </div>
             </div>
 
+            
             <hr />
 
             <div className="section group">

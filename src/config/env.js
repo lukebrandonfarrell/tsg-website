@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const prod = true;
+const prod = false;
 
 const config = prod ? {
   api: 'https://talentstatus.com/api'
