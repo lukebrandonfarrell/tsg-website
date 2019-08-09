@@ -128,8 +128,8 @@ class ProfilePage extends Component {
                   imageUrl={ primaryPhotoUrl || defaultPhoto }
                   hideName />
                 <div class="print_options">
-                  <a href={`http://127.0.0.1:8000/api/print_card/${ this.state.id }`}>Print card</a>
-                  <a style={{ float: 'right'}} href={`http://127.0.0.1:8000/api/print_cv/${ this.state.id }`}>Print CV</a>
+                  <a href={`https://talentstatus.com/api/print_card/${ this.state.id }`}>Print card</a>
+                  <a style={{ float: 'right'}} href={`https://talentstatus.com/api/print_cv/${ this.state.id }`}>Print CV</a>
                 </div>
               </div>
 
