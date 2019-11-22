@@ -7,19 +7,20 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {
   faHeart as outlineHeart,
   faEnvelope as outlineEnvelope,
-  faComment as outlineComment
+  faComment as outlineComment,
+  faStickyNote as outlineNote
 } from '@fortawesome/fontawesome-free-regular';
 import {
-  faHeart as solidHeart
+  faHeart as solidHeart,
+  faStickyNote as solidNote
 } from '@fortawesome/fontawesome-free-solid';
 
 import { apiInstance } from '../config/env.js';
+import NoteForm from '../components/forms/NoteForm';
 
 class TalentBox extends React.Component {
   triggerLightbox(){
     const { id, lightbox_id } = this.props;
-
-    console.log(this.props);
 
     apiInstance.delete(`/lightbox/${lightbox_id}/${id}`)
       .then((response) => {
@@ -28,6 +29,11 @@ class TalentBox extends React.Component {
       .catch(function (error) {
         console.log(error);
       });
+  }
+
+  toggleNote(id){
+    const note = document.getElementById(`note-${id}`);
+    note.style.display = (note.style.display === 'none') ? 'block' : 'none';
   }
 
   renderName(){
@@ -48,7 +54,7 @@ class TalentBox extends React.Component {
   renderIcons(){
     if(this.props.icons){
       const { iconsContainerStyle, iconStyle } = styles;
-      const { lightbox } = this.props;
+      const { lightbox, lightbox_id, note } = this.props;
       
       if(this.props.editable){
         return (
@@ -58,6 +64,10 @@ class TalentBox extends React.Component {
             </div>
             <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
             <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
+            <div
+              style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={note ? solidNote : outlineNote} 
+              onClick={() => this.toggleNote(this.props.id)}/>
+            </div>
           </div>
         );
       }
@@ -67,24 +77,27 @@ class TalentBox extends React.Component {
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/></div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
+          {lightbox_id ? (
+          <div 
+            style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={note ? solidNote : outlineNote} 
+            onClick={() => this.toggleNote(this.props.id)}/></div>)
+            : null}
+
         </div>
       );
     }
   }
 
   render(){
-    const { id, imageUrl } = this.props;
+    const { id, imageUrl, editable, lightbox_id, note } = this.props;
     const { boxStyle, tintStyle } = styles;
     const profileLink = `/talent/${id}`;
 
     return (
-      <div>
+      <div style={{...boxStyle, ...{ backgroundImage: `url(${imageUrl})`, }} }>
+        <NoteForm id={id} lightbox_id={lightbox_id} editable={editable} note={note}/>
         <Link to={ profileLink }>
-          <div style={{
-            ...boxStyle,
-            ...{ backgroundImage: `url(${imageUrl})`, }}
-          }>
-
+          <div>  
             <div style={ tintStyle }>
               { this.renderName() }
             </div>

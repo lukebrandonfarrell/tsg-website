@@ -25,6 +25,7 @@ const TalentList = ({ talent, lightboxId, editable }) => {
             selectedLigthtboxId={ lightboxId }
             lightbox_id = { lightboxId }
             editable = { editable }
+            note = { element.lightbox_link ? element.lightbox_link.note : null }
             icons />
         </div>
       );
