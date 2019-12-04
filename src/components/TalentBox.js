@@ -6,9 +6,6 @@ import { Link } from 'react-router-dom';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import {
   faHeart as outlineHeart,
-  faEnvelope as outlineEnvelope,
-  faComment as outlineComment,
-  faStickyNote as outlineNote
 } from '@fortawesome/fontawesome-free-regular';
 import {
   faHeart as solidHeart,
@@ -36,6 +33,20 @@ class TalentBox extends React.Component {
     note.style.display = (note.style.display === 'none') ? 'block' : 'none';
   }
 
+  renderNote() {
+    const { iconStyle, iconText } = styles;
+
+    if(this.props.note) {
+      return (
+        <div style={ iconStyle } onClick={() => this.toggleNote(this.props.id)} >
+          <FontAwesomeIcon color='red' size='lg' icon={solidNote} />
+          <span style={ iconText }>Notes</span>
+        </div>
+      );
+    }
+    return;
+  }
+
   renderName(){
     const { firstName, lastName, hideName } = this.props;
     const { nameStyle } = styles;
@@ -54,7 +65,7 @@ class TalentBox extends React.Component {
   renderIcons(){
     if(this.props.icons){
       const { iconsContainerStyle, iconStyle } = styles;
-      const { lightbox, lightbox_id, note } = this.props;
+      const { lightbox, lightbox_id } = this.props;
       
       if(this.props.editable){
         return (
@@ -62,12 +73,7 @@ class TalentBox extends React.Component {
             <div style={ [styles.iconStyle, styles.iconRemove] } onClick={() => this.triggerLightbox()}>
               <FontAwesomeIcon color='red' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/> Remove
             </div>
-            <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
-            <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
-            <div
-              style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={note ? solidNote : outlineNote} 
-              onClick={() => this.toggleNote(this.props.id)}/>
-            </div>
+              {this.renderNote()}
           </div>
         );
       }
@@ -75,14 +81,7 @@ class TalentBox extends React.Component {
       return (
         <div style={ iconsContainerStyle }>
           <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={ lightbox ? solidHeart : outlineHeart }/></div>
-          <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineEnvelope}/></div>
-          <div style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={outlineComment}/></div>
-          {lightbox_id ? (
-          <div 
-            style={ iconStyle }><FontAwesomeIcon color='white' size='lg' icon={note ? solidNote : outlineNote} 
-            onClick={() => this.toggleNote(this.props.id)}/></div>)
-            : null}
-
+          { lightbox_id ? this.renderNote() : null }
         </div>
       );
     }
@@ -150,6 +149,7 @@ var styles = {
     textAlign: 'left',
     padding: '8px',
     backgroundColor: '#000000CC',
+    overflow: 'hidden',
   },
   iconStyle: {
     display: 'inline-block',
@@ -159,6 +159,10 @@ var styles = {
   iconRemove: {
     float: 'right',
     color: 'red'
+  },
+  iconText: {
+    color: 'red',
+    marginLeft: 5,
   }
 };
 
