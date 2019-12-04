@@ -2,7 +2,7 @@ import React from 'react';
 import TalentBox from '../components/TalentBox';
 import defaultPhoto from '../default-photo.png';
 
-const TalentList = ({ talent, lightboxId, editable }) => {
+const TalentList = ({ talent, loading, lightboxId, editable }) => {
   if(talent){
     return talent.map((element) => {
       let photo = defaultPhoto;
@@ -30,7 +30,11 @@ const TalentList = ({ talent, lightboxId, editable }) => {
         </div>
       );
     });
-  } else {
+  }
+  if (loading) {
+    return <h1> Loading... </h1>;
+  }
+   else {
     return <h1> No Talent </h1>;
   }
 };

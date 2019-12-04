@@ -16,7 +16,8 @@ class LighboxPage extends React.Component {
     this.state = {
       title: 'Lightbox Title',
       talent: null,
-      lightboxId: this.props.match.params.id
+      lightboxId: this.props.match.params.id,
+      loading: false,
     };
   }
 
@@ -25,12 +26,14 @@ class LighboxPage extends React.Component {
     const { user_id } = this.props;
 
     if(lightboxId){
+      this.setState({...this.state, loading: true});
       apiInstance.get(`/users/${user_id}/lightbox/${lightboxId}`)
         .then((response) => {
-          this.setState({ title: response.data.title, talent : response.data.talent, editable : response.data.editable });
+          this.setState({ loading: false, title: response.data.title, talent : response.data.talent, editable : response.data.editable });
         })
-        .catch(function (error) {
+        .catch((error) => {
           console.log(error);
+          this.setState({...this.state, loading: false})
         });
     }
   }
@@ -56,7 +59,7 @@ class LighboxPage extends React.Component {
           <Wrapper verticalPadding>
             <Subtitle>{ this.state.title }</Subtitle>
             <div className="section group">
-              <TalentList editable={ this.state.editable } talent={ this.state.talent } lightboxId={ this.state.lightboxId } />
+              <TalentList loading={this.state.loading} editable={ this.state.editable } talent={ this.state.talent } lightboxId={ this.state.lightboxId } />
             </div>
           </Wrapper>
         </PageTemplate>
