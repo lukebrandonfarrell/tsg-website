@@ -34,16 +34,25 @@ class TalentBox extends React.Component {
   }
 
   renderNote() {
-    const { iconStyle, iconText } = styles;
+    const { iconStyle, iconText, iconAddText } = styles;
 
     if(this.props.note) {
       return (
         <div style={ iconStyle } onClick={() => this.toggleNote(this.props.id)} >
-          <FontAwesomeIcon color='red' size='lg' icon={solidNote} />
+          <FontAwesomeIcon color= 'red' size='lg' icon={solidNote} />
           <span style={ iconText }>Notes</span>
         </div>
       );
     }
+    if(this.props.editable) {
+      return (
+        <div style={ iconStyle } onClick={() => this.toggleNote(this.props.id)} >
+          <FontAwesomeIcon color= 'white' size='lg' icon={solidNote} />
+          <span style={ iconAddText }>Add Notes</span>
+        </div>
+      );
+    }
+
     return;
   }
 
@@ -162,6 +171,10 @@ var styles = {
   },
   iconText: {
     color: 'red',
+    marginLeft: 5,
+  },
+  iconAddText: {
+    color: 'white',
     marginLeft: 5,
   }
 };
