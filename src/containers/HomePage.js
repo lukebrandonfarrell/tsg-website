@@ -77,7 +77,7 @@ class HomePage extends Component {
               
               <div style={{ backgroundColor: 'white', padding: '12px 8px' }}>
                 <Wrapper>
-                  <Title label='representation' />
+                  <Title label='representation1' />
                   <p style={{ textAlign: 'justify', fontSize: '17px' }}>If you are seeking representation, please send your photo, CV, a short covering email and a link to a showreel or example of your work to agent@tsgcasting.com</p>
                 </Wrapper>
               </div>
