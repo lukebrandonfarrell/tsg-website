@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { setToken, setUser } from './actions';
 
 import HomePage from './containers/HomePage';
+import HomeRebuildPage from './containers/HomeRebuildPage';
 import ClientsPage from './containers/ClientsPage';
 import ContactPage from './containers/ContactPage';
 import AdminLoginPage from './containers/AdminLoginPage';
@@ -20,7 +21,8 @@ class Router extends Component {
     return (
       <BrowserRouter basename="/">
         <div className="routes">
-          <Route exact path='/' component={HomePage}/>
+          <Route exact path='/' component={HomeRebuildPage}/>
+          {/* <Route exact path='/' component={HomePage}/> */}
           <Route path="/clients" component={ClientsPage}/>
           <Route path="/contact" component={ContactPage}/>
           <Route path="/talent/:id" component={ProfilePage}/>

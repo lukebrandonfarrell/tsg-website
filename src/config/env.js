@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+export const instagramFeedUrl = 'https://www.instagram.com/talentstatus';
 const prod = true;
 
 const config = prod ? {
@@ -10,4 +11,8 @@ const config = prod ? {
 
 export const apiInstance = axios.create({
   baseURL: config.api,
+});
+
+export const instagramFeedInstance = axios.create({
+  baseUrl: instagramFeedUrl,
 });

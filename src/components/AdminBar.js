@@ -77,7 +77,8 @@ class AdminBar extends React.Component {
 
     const menuItems = [
       { link: '/dashboard', label: 'Dashboard' },
-      { link: '/lightbox', label: 'Lightbox' }
+      { link: '/lightbox', label: 'Lightbox' },
+      { link: '/contentPopulation', label: 'Content population' }
     ];
 
     return (

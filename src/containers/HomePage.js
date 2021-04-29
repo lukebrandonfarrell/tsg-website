@@ -55,8 +55,8 @@ class HomePage extends Component {
 
                     <div className="col span_1_of_2">
                       <ContentBoxes>
-                        <Title label='representation1' />
-                        <p style={{ textAlign: 'justify', fontSize: '17px' }}>IIf you are seeking representation, please send your photo, CV, a short covering email and a link to a showreel or example of your work to agent@tsgcasting.com</p>
+                        <Title label='representation' />
+                        <p style={{ textAlign: 'justify', fontSize: '17px' }}>If you are seeking representation, please send your photo, CV, a short covering email and a link to a showreel or example of your work to agent@tsgcasting.com</p>
                       </ContentBoxes>
                     </div>
                   </div>
@@ -77,7 +77,7 @@ class HomePage extends Component {
               
               <div style={{ backgroundColor: 'white', padding: '12px 8px' }}>
                 <Wrapper>
-                  <Title label='representation1' />
+                  <Title label='representation' />
                   <p style={{ textAlign: 'justify', fontSize: '17px' }}>If you are seeking representation, please send your photo, CV, a short covering email and a link to a showreel or example of your work to agent@tsgcasting.com</p>
                 </Wrapper>
               </div>
