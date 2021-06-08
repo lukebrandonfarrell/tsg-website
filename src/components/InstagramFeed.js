@@ -62,7 +62,7 @@ class InstagramFeed extends Component {
 		return (
 			<React.Fragment>
 				<Wrap>
-					<Heading title="INSTAGRAM FEED" ctaText="FOLLOW US" ctaUrl={"https://www.instagram.com/accounts/login/?next=%2Ftalentstatus%2F&source=follow"} ctaIcon={faInstagram} ctaStyles={styles.ctaStyles} customStyles={styles.heading} centered/>
+					<Heading title="INSTAGRAM" ctaText="FOLLOW US" ctaUrl={"https://www.instagram.com/accounts/login/?next=%2Ftalentstatus%2F&source=follow"} ctaIcon={faInstagram} ctaStyles={styles.ctaStyles} customStyles={styles.heading} centered/>
 				</Wrap>
 				{this.props.instagramFeeds && <Feed items={this.props.instagramFeeds} grid="col-feed" />}
 			</React.Fragment>

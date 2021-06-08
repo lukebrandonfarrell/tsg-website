@@ -73,7 +73,10 @@ const styles = {
 		position: 'relative',
 		padding: '15px 0',
 		marginTop: '31px',
-		marginBottom: '49px'
+		marginBottom: '49px',
+		display: 'flex',
+		alignItems: 'center',
+		justifyContent: 'center'
 	},
 	title: {
 		fontFamily: 'Playfair Display',
@@ -88,8 +91,9 @@ const styles = {
 		fontSize: '18px',
 		letterSpacing: '0.3px',
 		textDecoration: 'none',
-		position: 'absolute',
-		right: '0',
+		//position: 'absolute',
+		//right: '0',
+		marginLeft: '20px',
 		top: '15px',
 		color: '#fff',
 		display: 'inline-block',
