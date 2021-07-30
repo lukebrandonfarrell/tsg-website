@@ -9,8 +9,8 @@ import { debounce } from '../helpers/Debounce';
 const DUMMY_DATA = {
 	tvAndFilm: [
 		{
-			url: '/images/tvfilm/SOMEONE_YOU_THOUGHT_YOU_KNEW__OCTOBER_FILMS.jpg',
-			title: 'Someone You Thought You Knew - October Films',
+			url: '/images/tvfilm/Grantchester-banner.jpg',
+			title: 'Grantchester - Kudos Productions',
 			name: '',
 			path: '/'
 		},
@@ -35,8 +35,8 @@ const DUMMY_DATA = {
 			path: '/'
 		},
 		{
-			url: '/images/adcampaign/PaddyPowerBingo.png',
-			title: 'Paddy Power Bingo – VCCP',
+			url: '/images/adcampaign/EAT_THEM_TO_DEFEAT_THEM.jpg',
+			title: 'Eat Them To Defeat Them - Veg Power Campaign - Agile Films',
 			name: '',
 			path: '/'
 		},
@@ -62,9 +62,9 @@ const DUMMY_DATA = {
 		}
 	],
 	music: [
-		{url: '/images/musicvideo/NewLove.png',
+		{url: '/images/musicvideo/Craig_David_and_Krupt_FM.jpg',
 		title: '',
-		name: 'Silk City feat Ellie Goulding - New Love produced by Mr Duke',
+		name: 'Kurupt FM - Summertime (Official Video) ft. Craig David',
 		path: '/'
 
 		}
