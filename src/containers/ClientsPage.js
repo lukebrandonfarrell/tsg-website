@@ -59,7 +59,7 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div className="root">
+      <div className="root" style={{backgroundColor:'white'}}>
         <PageTemplate>
           <Wrapper verticalPadding>
             <Title label='Clients' />

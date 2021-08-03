@@ -16,6 +16,22 @@ import { apiInstance } from '../config/env.js';
 import NoteForm from '../components/forms/NoteForm';
 
 class TalentBox extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: 'black'
+    };
+  }
+
+  onMouseEnter = e => {
+    this.setState({ color: 'rgb(48, 164, 220)' });
+  };
+
+  onMouseLeave = e => {
+    this.setState({ color: 'black' });
+  };
+
   triggerLightbox(){
     const { id, lightbox_id } = this.props;
 
@@ -56,15 +72,15 @@ class TalentBox extends React.Component {
     return;
   }
 
-  renderName(){
+  renderName(profLink){
     const { firstName, lastName, hideName } = this.props;
-    const { nameStyle } = styles;
+    const { linkBox,linkStyle} = styles;
 
     if(!hideName){
       return (
-        <h4 style={ nameStyle }>
-          {firstName} {lastName}
-        </h4>
+        <div style={linkBox}>
+          <a key={this.props.id} style={{...linkStyle,...{ 'color': this.state.color }}} href={ profLink }>{firstName} {lastName}</a>
+        </div>
       );
     }
 
@@ -97,21 +113,27 @@ class TalentBox extends React.Component {
   }
 
   render(){
+    const { hovered } = this.state;
     const { id, imageUrl, editable, lightbox_id, note } = this.props;
     const { boxStyle, tintStyle } = styles;
     const profileLink = `/talent/${id}`;
 
     return (
-      <div style={{...boxStyle, ...{ backgroundImage: `url(${imageUrl})`, }} }>
+      <div >
+      <div onMouseEnter={this.onMouseEnter} onMouseLeave={this.onMouseLeave} style={{...boxStyle, ...{ backgroundImage: `url(${imageUrl})`, }} }>
         <NoteForm id={id} lightbox_id={lightbox_id} editable={editable} note={note}/>
         <Link to={ profileLink }>
-          <div>  
+          {/* <div>   */}
             <div style={ tintStyle }>
-              { this.renderName() }
+              {/* { this.renderName() } */}
             </div>
-          </div>
+          {/* </div> */}
         </Link>
         { this.renderIcons() }
+        
+      </div>
+      { this.renderName(profileLink) }
+      {hovered && <div>Yes!!</div>}
       </div>
     );
   }
@@ -153,6 +175,20 @@ var styles = {
     fontWeight: 'bold',
     boxSizing: 'border-box',
     overflow: 'hidden !important',
+  },
+  linkBox: {
+    textAlign: 'center',
+    marginTop: '10px',
+    marginBottom: '10px',
+    fontSize: '22px'
+  },
+  linkStyle: {
+    textDecoration: 'none',
+    color:'black',
+    fontFamily:'Montserrat',
+    ':hover': {
+      color: 'rgb(48, 164, 220)',
+    }
   },
   iconsContainerStyle: {
     textAlign: 'left',
