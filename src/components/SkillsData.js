@@ -39,7 +39,7 @@ class SkillsData extends React.Component {
         });
 
         let jsx = [];
-        jsx.push(<Subtitle key="subtitle">Skills</Subtitle>);
+        jsx.push(<Subtitle textColor = {{color: 'black',fontWeight: 'bold'}} key="subtitle">Skills</Subtitle>);
 
         Object.keys(skillsGroupedByCategory).forEach(function( key ) {
           const groupedSkills = skillsGroupedByCategory[key];

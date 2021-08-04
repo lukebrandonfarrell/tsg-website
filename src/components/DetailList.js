@@ -6,13 +6,12 @@ class DetailList extends React.Component {
 
     if(data){
       return data.map((element, i) => {
-        const background = !(i % 2) ? { backgroundColor: '#E2E2E2' } : {};
+        // const background = !(i % 2) ? { backgroundColor: '#E2E2E2' } : {};
 
         if(element.value){
           return (
             <div key={element.key} style={{
               ...styles.listItemStyle,
-              ...background,
               ...{ width: this.props.itemWidth }
             }}>
               <div className="col span_1_of_2">

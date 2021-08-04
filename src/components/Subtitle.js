@@ -2,11 +2,12 @@ import React from 'react';
 
 class Subtitle extends React.Component {
   render() {
+    const { textColor } = this.props;
     const { containerStyle, textStyle } = styles;
 
     return (
       <div style={ containerStyle }>
-        <h3 style={ textStyle }>{ this.props.children }</h3>
+        <h3 style={{ ...textStyle , ...textColor}}>{ this.props.children }</h3>
       </div>
     );
   }

@@ -246,7 +246,7 @@ const styles = {
     cursor: 'pointer',
   },
   itemSelectedStyle : {
-    color: '#555555',
+    color: 'black',
     backgroundColor: '#f5f8fa',
     border: '1px solid #ddd',
     borderBottomColor: 'transparent',
@@ -254,10 +254,11 @@ const styles = {
     borderRadius: '4px 4px 0 0',
   },
   listItemLinkStyle : {
-    color: '#3097D1',
+    color: 'black',
     backgroundColor: '#e5e9ec',
     textDecoration: 'none',
-    fontWeight: 'lighter',
+    // fontWeight: 'bold',
+    fontSize: '18px',
     display: 'block',
     padding: '12px 15px',
     borderBottom: '1px solid #ddd',

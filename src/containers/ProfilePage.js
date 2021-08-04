@@ -118,7 +118,7 @@ class ProfilePage extends Component {
     }
 
     return (
-      <div className="root">
+      <div className="root" style={{backgroundColor:'white'}}>
         <PageTemplate>
           <Wrapper verticalPadding>
             <div className="section group">
@@ -128,13 +128,13 @@ class ProfilePage extends Component {
                   imageUrl={ primaryPhotoUrl || defaultPhoto }
                   hideName />
                 <div class="print_options">
-                  <a href={`https://talentstatus.com/api/print_card/${ this.state.id }`}>Print card</a>
-                  <a style={{ float: 'right'}} href={`https://talentstatus.com/api/print_cv/${ this.state.id }`}>Print CV</a>
+                  <a style={{color:'black'}} href={`https://talentstatus.com/api/print_card/${ this.state.id }`}>Print card</a>
+                  <a style={{color:'black', float: 'right'}} href={`https://talentstatus.com/api/print_cv/${ this.state.id }`}>Print CV</a>
                 </div>
               </div>
 
               <div className={`col ${detailsSpanClass}`}>
-                <div className="section group">
+                <div className="section group prof_detail">
                   <Title label={ fullName } />
                   <DetailList data={detailsData} />
                 </div>

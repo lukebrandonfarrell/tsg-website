@@ -52,6 +52,13 @@
 	width: 48%;
 }
 
+.prof_detail .span_1_of_2 {
+	width: 10%;
+}
+
+.physical_details .span_1_of_2 {
+	width: 38%;
+}
 /*  GRID OF ONE  */
 .span_1_of_1 {
 	width: 100%;

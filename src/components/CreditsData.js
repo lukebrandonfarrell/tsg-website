@@ -39,7 +39,7 @@ class CreditsData extends React.Component {
 
         return (
           <div>
-            <Subtitle>Credits</Subtitle>
+            <Subtitle textColor = {{color: 'black',fontWeight: 'bold'}}>Credits</Subtitle>
             <div style={creditsContainerStyle}>
               { creditsJSX }
             </div>

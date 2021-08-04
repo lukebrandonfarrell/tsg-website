@@ -39,8 +39,8 @@ class PhysicalData extends React.Component {
         if (matchMedia('only screen and (max-width: 880px)').matches){ width = '100%'; }
 
         return (
-          <div>
-            <Subtitle>Physical</Subtitle>
+          <div className="physical_details">
+            <Subtitle textColor = {{color: 'black',fontWeight: 'bold'}}>Physical</Subtitle>
             <DetailList
               data={ physicalData }
               itemWidth={width}
