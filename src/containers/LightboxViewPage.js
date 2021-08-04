@@ -54,7 +54,7 @@ class LighboxPage extends React.Component {
 
   render() {
     return (
-      <div className="root">
+      <div className="root" style={{backgroundColor:'white'}}>
         <PageTemplate>
           <Wrapper verticalPadding>
             <Subtitle>{ this.state.title }</Subtitle>
