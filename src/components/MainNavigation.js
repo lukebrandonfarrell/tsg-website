@@ -32,7 +32,7 @@ class MainNavigation extends React.Component {
           <div style={ navStyle }>
             <Wrapper>
               <NavigationButton link="/" label="Home" />
-              <NavigationButton link="/clients" label="Clients" />
+              <NavigationButton link="/clients" label="Talent" />
               <NavigationButton link="/contact" label="Contact" />
 
               <Float dir='right'>
