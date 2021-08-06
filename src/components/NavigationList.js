@@ -4,7 +4,7 @@ import NavigationItem from './NavigationItem';
 
 const NAV_ITEMS = [
 	{
-		title: 'CLIENTS',
+		title: 'TALENT',
 		path: 'clients',
 		pathType: 'internal'
 	},

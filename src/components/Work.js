@@ -83,8 +83,8 @@ const DUMMY_DATA = {
 			path: '/'
 		},
 		{
-			url: '/images/photographic/HSBC_FUSION.png',
-			title: 'HSBC - Fusion',
+			url: '/images/photographic/Ocean_Navarro_-_Whats_App.jpg',
+			title: 'Whats App Campaign with Lewis Khan',
 			name: '',
 			path: '/'
 		},

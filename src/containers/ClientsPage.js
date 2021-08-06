@@ -62,7 +62,7 @@ class HomePage extends Component {
       <div className="root" style={{backgroundColor:'white'}}>
         <PageTemplate>
           <Wrapper verticalPadding>
-            <Title label='Clients' />
+            <Title label='Talent' />
             <div className="section group">
               <TalentList talent={ this.state.talent } />
             </div>

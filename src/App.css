@@ -1,9 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 html, body, #root, .routes {
   height: 100%;
 }
 
 body {
-  font-family: Raleway, sans-serif;
+  	font-family: Raleway, sans-serif;
 	margin:0;
 	padding:0;
 }

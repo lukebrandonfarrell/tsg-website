@@ -37,8 +37,9 @@ var styles = {
   taglineStyle: {
     float: 'right',
     color: '#26a3de',
-    fontSize: '32px',
-    fontWeight: '100',
+    fontSize: '30px',
+    lineHeight: '1.1',
+    fontWeight: 'normal',
     margin: '20px 0',
     paddingTop: '20px'
   },

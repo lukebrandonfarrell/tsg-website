@@ -43,7 +43,6 @@ const styles = {
         alignSelf: 'center',
         width: "100%",
         height:850,
-        // maxHeight: 750,
         resizeMode: 'cover',
         objectFit: 'cover'
     }
