@@ -21,6 +21,8 @@ class MediaComponent extends React.Component {
       clips: null,
       lightboxIndex: 0,
       lightboxOpen: false,
+      displayStyle: {display:'none'},
+      showButton: true
     };
   }
 
@@ -55,7 +57,7 @@ class MediaComponent extends React.Component {
 
   renderPhotos(){
     const { selected, photos, lightboxOpen, lightboxIndex } = this.state;
-    const { imageStyle } = styles;
+    const { imageStyle , itemStyle} = styles;
 
     if(selected === MediaEnum.photos){
       if(photos){
@@ -67,16 +69,44 @@ class MediaComponent extends React.Component {
         let jsx = [];
 
         photos.map((element, i) => {
-          jsx.push(
-            <div key={i} className={`col ${spanClass}`}>
-              <div style={{
-                ...imageStyle,
-                ...{ backgroundImage: `url(${element.source})`, }}
-              }
-              onClick={() => this.setState({ lightboxOpen: true, lightboxIndex: i })}
-              />
-            </div>);
+          if(i < 4) {
+            jsx.push(
+              <div key={i} className={`col ${spanClass}`}>
+                <div style={{
+                  ...imageStyle,
+                  ...{ backgroundImage: `url(${element.source})`, }}
+                }
+                onClick={() => this.setState({ lightboxOpen: true, lightboxIndex: i })}
+                />
+              </div>);
+          } else {
+            if(i == 4 && this.state.showButton) {
+              jsx.push(
+                <div className={`col span_4_of_4`} style={{textAlign:'center'}}>
+                    <a style={itemStyle} onClick={() => this.setState({ displayStyle: {display:'block'}, showButton:false})}>Load more images</a>
+                </div>
+              );
+            }
+            jsx.push(
+              <div key={i} className={`col ${spanClass}`}>
+                <div style={{
+                  ...imageStyle,
+                  ...{ backgroundImage: `url(${element.source})`, },
+                  ...this.state.displayStyle}
+                }
+                onClick={() => this.setState({ lightboxOpen: true, lightboxIndex: i })}
+                />
+              </div>);
+          }
         });
+
+        if(!this.state.showButton) {
+          jsx.push(
+            <div className={`col span_4_of_4`} style={{textAlign:'center'}}>
+                <a style={itemStyle} onClick={() => this.setState({ displayStyle: {display:'none'}, showButton:true})}>Hide images</a>
+            </div>
+          );
+        }
 
         if(lightboxOpen){
           jsx.push(
@@ -277,6 +307,19 @@ const styles = {
   },
   audioPlayerStyle: {
     width: '100%',
+  },
+  itemStyle: {
+    padding: '6px 12px',
+    margin: '20px 0px',
+    lineHeight: '1.6',
+    textDecoration: 'none',
+    color: 'black',
+    backgroundColor: '#fff',
+    border: '1px solid #ddd',
+    borderColor: '#ddd',
+    marginLeft: '-1px',
+    cursor: 'pointer',
+    display: 'inline-block'
   }
 };
 
