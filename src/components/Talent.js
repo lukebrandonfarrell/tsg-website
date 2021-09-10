@@ -10,7 +10,7 @@ const DUMMY_DATA = [
 	{
 		url:'/images/youngtalents/Shea_Wall.jpeg',
 		name: 'Shea Wall',
-		age: '14 YEARS',
+		age: '15 YEARS',
 		title: '',
 		path: 'https://www.spotlight.com/3419-0190-9649'
 	},
@@ -24,7 +24,7 @@ const DUMMY_DATA = [
 	{
 		url:'/images/youngtalents/MiaHeadshot2.jpg',
 		name: 'Mia-Rose Lightfoot',
-		age: '10 YEARS',
+		age: '11 YEARS',
 		title: '',
 		path: 'https://www.spotlight.com/9419-7869-4075'
 	},
