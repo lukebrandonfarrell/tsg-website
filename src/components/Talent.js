@@ -29,11 +29,11 @@ const DUMMY_DATA = [
 		path: 'https://www.spotlight.com/9419-7869-4075'
 	},
 	{
-		url:'/images/youngtalents/evelynfung.jpg',
-		name: 'Evelyn Fung',
+		url:'/images/youngtalents/Nyemah_Bentley.jpg',
+		name: 'Nyemah Bentley',
 		age: '7 YEARS',
 		title: '',
-		path: 'https://www.spotlight.com/profile/7819-9080-6825'
+		path: 'https://www.spotlight.com/4377-5645-2589'
 	},
 	{
 		url:'/images/youngtalents/BabyNoah.jpg',
