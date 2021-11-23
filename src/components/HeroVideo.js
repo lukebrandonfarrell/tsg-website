@@ -24,7 +24,7 @@ const HeroVideo = () => {
 	};
     return (
       <div className="vimeo" style={styles.container}>
-        <iframe src="https://player.vimeo.com/video/611626879?autoplay=1&muted=1&loop=1" style={{...styles.video, ...responsiveStyles.video}} frameborder="0"  allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <iframe src="https://player.vimeo.com/video/648568543?autoplay=1&muted=1&loop=1" style={{...styles.video, ...responsiveStyles.video}} frameborder="0"  allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
       </div>
     );
   };

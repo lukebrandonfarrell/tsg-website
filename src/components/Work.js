@@ -21,8 +21,8 @@ const DUMMY_DATA = {
 			path: '/'
 		},
 		{
-			url: '/images/tvfilm/No_Mans_Land.jpg',
-			title: 'No Man’s Land -Spiro Films',
+			url: '/images/tvfilm/London_Kills.jpg',
+			title: 'London Kills',
 			name: '',
 			path: '/'
 		}
@@ -48,8 +48,8 @@ const DUMMY_DATA = {
 		}
 	],
 	campaignsFeatured: {
-		url: '/images/adcampaign/Jaffa_Cakes.jpg',
-		title: 'Jaffa Cakes - produced by Sweetshop',
+		url: '/images/adcampaign/Sports_Direct_Christmas.jpg',
+		title: 'Sports Direct Christmas Campaign - Produced By Pulse Films',
 		name: '',
 		path: '/'
 	},
@@ -62,9 +62,10 @@ const DUMMY_DATA = {
 		}
 	],
 	music: [
-		{url: '/images/musicvideo/Craig_David_and_Krupt_FM.jpg',
+		{
+		url: '/images/musicvideo/Young_T_Bugsey.jpg',
 		title: '',
-		name: 'Kurupt FM - Summertime (Official Video) ft. Craig David',
+		name: 'Young T & Bugsey - Big Bidness - Produced By Pulse Films',
 		path: '/'
 
 		}
