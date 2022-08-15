@@ -146,7 +146,7 @@ class MediaComponent extends React.Component {
         return videos.map((element, i) => {
           const { source } = element;
 
-          if(source.indexOf('www.youtube.com')){
+          if(source.indexOf('www.youtube.com') !== -1){
             return (
               <div key={i} className={`col ${spanClass}`}>
                 <iframe title='Video' width='100%' height='300px' src={ source }></iframe>
