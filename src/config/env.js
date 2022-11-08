@@ -4,7 +4,7 @@ export const instagramFeedUrl = 'https://www.instagram.com/talentstatus';
 const prod = true;
 
 const config = prod ? {
-  api: 'https://talentstatus.com/api'
+  api: 'https://talentstatus.co.uk/api'
 } : {
   api: 'http://127.0.0.1:8000/api'
 };
